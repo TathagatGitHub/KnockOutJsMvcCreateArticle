@@ -1,0 +1,34 @@
+﻿
+@using KnockOutJsMvcCreateArticle.Models;
+@model IEnumerable<KnockOutJsMvcCreateArticle.Models.Products>  
+@{
+    ViewBag.Title = "ReadXMLFromFile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebGrid grid = new WebGrid(Model, rowsPerPage: 5);
+}
+
+<h2 class="label-warning"> Product List using XML- Webgrid Implementation</h2>
+
+@grid.GetHtml(
+
+    tableStyle: "table", // applying style on grid
+
+    fillEmptyRows: true,
+        //show empty row when there is only one record on page to it will display all empty rows there.
+   
+    mode: WebGridPagerModes.All, //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+   alternatingRowStyle: "alt",
+
+
+    columns: new[]  // colums in grid
+    {
+        grid.Column("ProductId"), //the model fields to display
+        grid.Column("ProductName"  ),
+        grid.Column("ProductCost")
+        
+
+   })

@@ -1,0 +1,30 @@
+﻿@using System.Web.Script.Serialization;
+@model KnockOutJsMvcCreateArticle.Models.Article
+
+@{
+    ViewBag.Title = "JsonModelView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>JsonModelView</h2>
+<script type="text/javascript">
+    var initialData =   @Html.Raw( new JavaScriptSerializer().Serialize(Model));
+//var viewModel = ko.mapping.fromJSON(initialData);
+//$(document).ready(function () { ko.applyBindings(viewModel); });
+
+    var libraryViewModel = ko.mapping.fromJS(Models);
+    var initialData = ko.mapping.fromJS(@Html.Raw(Model));
+
+//  libraryViewModel.LibraryName(libraryModel.LibraryName);
+//  libraryViewModel.AmountOfBooks(libraryModel.AmountOfBooks);
+    ko.mapping.fromJS(initialData, libraryViewModel);
+ko.applyBindings(libraryViewModel);
+
+</script>
+<span data-bind="value: Title"> </span>
+@Html.DisplayFor(model => model.Title, new { data_bind = "value: Title" })
+@Html.DisplayFor(model => model.Excerpts, new { data_bind = "value: Excerpts" })
+@Html.DisplayFor(model => model.Content, new { data_bind = "value: Content" })
+
+
+

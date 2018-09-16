@@ -1,0 +1,123 @@
+﻿@using KnockOutJsMvcCreateArticle.Models
+@using Newtonsoft.Json;
+@model IEnumerable<KnockOutJsMvcCreateArticle.Models.Book>
+
+<script src="~/Scripts/Knockout.mapping-2.4.1.js"></script>
+
+<div id="createbook">
+
+    @Ajax.ActionLink("Create New", "Create", "Book", new { id = "privacyLink" }, new AjaxOptions { UpdateTargetId = "createbook" })
+    @Ajax.ActionLink("Create New wizard", "CreateWizard", "Book", new { id = "privacyLink" }, new AjaxOptions { UpdateTargetId = "createbook" })
+    <div id="booklist">
+        <div class="row">
+            <div class="col-md-6 float-left">
+                
+                    <table class="table table-bordered table-striped table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Book ID</th>
+                                <th>Title</th>
+                                <th>ISBN</th>
+                                <th>Description</th>
+                                <th>Author ID</th>
+
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: books">
+                            <tr>
+                                <td data-bind="text:Id"></td>
+
+                                <td data-bind="text:Title"></td>
+                                <td data-bind="text:Isbn"></td>
+                                <td data-bind="text:Description"></td>
+                                <td data-bind="text:AuthorId"></td>
+
+                                <td>
+                                    @*
+                        <input type="button" class="btn btn-danger" value="Remove" data-bind="click: $root.remove" />
+                                    *@
+                                    <a data-bind="click: $root.remove" class="btn btn-danger">Remove</a>
+                                </td>
+                                <td>
+                                    @*
+                        <input type="button" class="btn btn-primary" value="Detais" data-bind="event: { mouseover: $root.details }" />
+                                    *@
+                                    <a data-bind="click: $root.details" class="btn btn-info">Details</a>
+                                </td>
+                                <td>
+                                    @*        <input type="button" class="btn btn-danger btn-xs" value="Edit" data-bind="event: { mouseover: $root.edit }" />*@
+                                    @*<input type="button" class="btn btn-warning" value="Edit" data-bind="click: $root.edit" />
+                                    *@
+                                    <a data-bind="click: $root.edit" class="btn btn-warning">Edit</a>
+                                </td>
+                                @*
+                      <td>
+                        <a data-bind="attr: { href: 'http://localhost:57367/Book/KOEdit/' + Id }" class="btn btn-primary">Edit</a>
+
+                        @Ajax.ActionLink("Edit",  "KOEdit",     "Book",    new { id = 1},   new AjaxOptions { UpdateTargetId = "createbook" })
+
+                    </td>
+                                *@
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var DynamicModelLoading = function (data) {
+        var self = this;
+        self.books = ko.observableArray();
+        ko.mapping.fromJS(data, {}, self);
+        self.books = data;
+        
+        self.details = function (book) {
+            var detail = book.AuthorId + " " + book.Title;
+            alert(detail);
+        };
+        self.remove = function (book) {
+            alert(book.Title + " " + book.Id);
+            $.ajax({
+                url: '/api/bookapi/' + book.Id,
+                type: 'delete',
+                contentType: 'application/json',
+                success: function () {
+                    alert("Deleted");
+                }
+            });
+        };
+
+        self.edit = function (book) {
+      //      alert(book.Title + " " + book.Id);
+          //  alert('http://localhost:57367/Book/edit/' + book.Id);
+            //  window.location.href = 'http://localhost:57367/Book/KOEdit/' + book.Id;
+            $.ajax({
+                url: 'http://localhost:57367/Book/KOEdit/' + book.Id,
+                contentType: 'application/html; charset=utf-8',
+                type: 'GET',
+                dataType: 'html'
+
+            })
+        .success(function (result) {
+    
+    $('#createbook').html(result);
+})
+        .error(function (xhr, status) {
+   
+})
+
+        };
+
+    };
+    var viewModel = new DynamicModelLoading(@Html.Raw(Json.Encode(Model)));
+    //ko.applyBindings(viewModel);
+    // ko.applyBindings(viewModel, $("booklist")[0]);
+    ko.applyBindings(viewModel, document.getElementById("booklist"));
+    
+</script>
+
+
+

@@ -1,0 +1,113 @@
+﻿<!-- Include jQuery Steps file -->
+<link href="~/Content/jquery.steps.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.steps.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+
+<!-- Below Form action method is not used, because .post is used in the javascript to submit via ajax.
+    You can use the form action method, if dn't want to use the .post ajax submit-->
+    <form id="form-3" method="post" action="http://localhost:57367/api/BookApi/PostBookStep/">
+    <h1>Book Title and Id</h1>
+    <fieldset>
+        <legend>Book Identification</legend>
+
+        <label for="Id">Id *</label>
+        <input id="Id" name="Id" type="text" class="required">
+        <label for="AuthorId">AuthorId *</label>
+        <input id="AuthorId" name="AuthorId" type="text" class="required">
+        <label for="Title">Title *</label>
+        <input id="Title" name="Title" type="text" class="required">
+        <p>(*) Mandatory</p>
+    </fieldset>
+
+    <h1>Details</h1>
+    <fieldset>
+        <legend>More Information</legend>
+
+        <label for="Isbn">Isbn *</label>
+        <input id="Isbn" name="Isbn" type="text" class="required">
+        <label for="Synopsis">Synopsis *</label>
+        <input id="Synopsis" name="Synopsis" type="text" class="required">
+        <label for="Description">Description *</label>
+        <input id="Description" name="Description" type="text">
+        <label for="ImageUrl">ImageUrl</label>
+        <input id="ImageUrl" name="ImageUrl" type="text">
+        <p>(*) Mandatory</p>
+    </fieldset>
+        <h1>Summary</h1>
+        <fieldset>
+            <legend>Success</legend>
+
+            <label id="message" for="message">Message</label>
+            
+        </fieldset>
+</form>
+
+<script>
+    $(function () {
+        $("#form-3").steps({
+            headerTag: "h1",
+            bodyTag: "fieldset",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                // Always allow going backward even if the current step contains invalid fields!
+                if (currentIndex > newIndex) {
+                    return true;
+                }
+
+                            
+                var form = $(this);
+
+                // Clean up if user went backward before
+                if (currentIndex < newIndex) {
+                    // To remove error styles
+                    $(".body:eq(" + newIndex + ") label.error", form).remove();
+                    $(".body:eq(" + newIndex + ") .error", form).removeClass("error");
+                }
+
+                // Disable validation on fields that are disabled or hidden.
+                form.validate().settings.ignore = ":disabled,:hidden";
+
+                // Start validation; Prevent going forward if false
+                return form.valid();
+            },
+            onStepChanged: function (event, currentIndex, priorIndex) {
+                // Suppress (skip) "Warning" step if the user is old enough and wants to the previous step.
+                if (currentIndex === 2 && priorIndex === 3) {
+                    $(this).steps("previous");
+                    return;
+                }
+
+              
+            },
+            onFinishing: function (event, currentIndex) {
+                var form = $(this);
+
+                // Disable validation on fields that are disabled.
+                // At this point it's recommended to do an overall check (mean ignoring only disabled fields)
+                form.validate().settings.ignore = ":disabled";
+
+                // Start validation; Prevent form submission if false
+                return form.valid();
+            },
+
+            onFinished: function (event, currentIndex) {
+                var form = $(this);
+             //   alert("Submitting");
+                // Submit form input
+                //form.submit(); // uncomment this line when not using the .post method below
+                // Comment below line if using the form action method
+                $.post("http://localhost:57367/api/BookApi/PostBookStepJsSubmission/", $("#form-3").serialize(), function (msg) {
+                    //alert("Submitting");
+                })
+                .success(function (data, status, xhr) {
+                
+                    window.location.href = "http://localhost:57367/Book/AuhorBookList";
+                })
+                .error(function () {
+            console.log("Error upading");
+         });
+            }
+
+        });
+    });
+</script>

@@ -1,0 +1,97 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Book
+
+<div id="KOcreateBook">
+    <div class="col-md-6">
+
+        @*
+
+            
+                    <form id="addBook" data-bind="submit: create">
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <legend>Contact</legend>
+                @Html.EditorForModel()
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+        </form>
+           *@
+
+
+        <form role="form">
+            <div class="form-group">
+                <label for="AuthorId">Author ID</label>
+                <input id="AuthorId" type="text" class="form-control" data-bind="value: AuthorId" /> <label data-bind="text: AuthorId"> </label>
+            </div>
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input id="Title" type="text" class="form-control" data-bind="value: Title, valueUpdate: 'afterkeydown'" /> <label data-bind="text: Title"> </label>
+            </div>
+            <div class="form-group">
+                <label for="Isbn">Isbn</label>
+                <input id="Isbn" type="text" class="form-control" data-bind="value: Isbn" /> <label data-bind="text: Isbn, valueUpdate: 'afterkeydown'"> </label>
+            </div>
+            <div class="form-group">
+                <label for="Synopsis">Synopsis</label>
+                <input id="Synopsis" type="text" class="form-control" data-bind="value: Synopsis" /> 
+            </div>
+            
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <input id="Description" type="text" class="form-control" data-bind="value: Description" />
+            </div>
+            
+            <div class="form-group">
+                <label for="ImageUrl">ImageUrl</label>
+                <input id="ImageUrl" type="text" class="form-control" data-bind="value: ImageUrl, valueUpdate: 'afterkeydown'" />
+                <label data-bind="text: ImageUrl"> </label>
+            </div>
+            
+
+        </form>
+        <input type="button" id="btnAddBook" class="btn btn-primary" value="Add Book" data-bind="click: create" />
+
+    </div>
+     
+</div>
+    <script type="text/javascript">
+        function BookViewModel() {
+            self = this;
+            self.Title = ko.observable();
+            self.Isbn = ko.observable();
+            self.AuthorId = ko.observable();
+            self.Synopsis = ko.observable();
+            self.Description = ko.observable();
+            self.ImageUrl = ko.observable();
+            self.create = function () {
+                var dataObject = ko.toJSON(this);
+
+            $.ajax({
+                url: '/api/bookapi',
+                type: 'post',
+                data: dataObject,
+                contentType: 'application/json',
+                success: function (data) { //After inserting into DB, add into table list
+                    
+                    window.location.href = 'http://localhost:57367/BookAuthor';
+                    // self.Description('');
+                }
+            });
+            //var self = this;
+            //self.Books = ko.observableArray();
+            
+            //self.create = function (formElement) {
+                
+            //    $.post('/api/bookapi/', $(formElement).serialize(), null, "json")
+            //    .done(function (o) { window.location.href = 'http://localhost:57367/BookAuthor' });
+            //}
+        };
+        }
+
+        $(document).ready(function () {
+        
+            ko.applyBindings(new BookViewModel(), document.getElementById("KOcreateBook"));
+        })
+    </script>
+

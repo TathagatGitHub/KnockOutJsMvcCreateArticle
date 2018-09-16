@@ -1,0 +1,83 @@
+﻿@model IEnumerable<KnockOutJsMvcCreateArticle.Models.Book>
+
+<div id="indexBooks">
+<p>
+   @Ajax.ActionLink("Create New", "Create", "Book", new { id = "privacyLink" }, new AjaxOptions { UpdateTargetId = "indexBooks" })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AuthorId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Isbn)
+        </th>
+        
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AuthorId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Isbn)
+        </td>
+        
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
+</div>
+<script type="text/javascript">
+
+    function viewModelBook() {
+        var self = this;
+
+        self.Id = ko.observable();
+        self.Title = ko.observable();
+        self.Isbn = ko.observable();
+        self.AuthorId = ko.observable();
+
+        self.details = function (book) {
+            var detail = book.AuthorId + " " + book.Title;
+            alert(detail);
+        };
+        self.remove = function (book) {
+            // $.ajax({ type: "DELETE", url: '/api/bookapi' + '/' + book.Id })
+            //       .done(function () { self.books.delete(book); });
+
+            $.ajax({
+                url: '/api/bookapi/' + book.Id,
+                type: 'delete',
+                contentType: 'application/json',
+                success: function () {
+                    self.books.remove(book);
+                }
+            });
+
+        };
+    };
+
+    ko.applyBindings(viewModelBook);
+
+
+</script>

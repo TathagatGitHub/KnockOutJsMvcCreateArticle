@@ -1,0 +1,66 @@
+﻿
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+<script src="~/Scripts/Knockout.mapping-2.4.1.js"></script>
+<h3>KnockOut Examples:</h3>
+
+<div class="control-group">
+    <label class="control-label">Title: </label>
+    <div class="controls">
+        <input type="text" data-bind="value: Title, valueUpdate:'input'" placeholder="Article Title" class="input-medium">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label">Excerpts: </label>
+    <div class="controls">
+        <textarea data-bind="value: Excerpts, valueUpdate:'keyup'" placeholder="Article Excerpts" rows="1"> </textarea>
+    </div>
+</div>
+
+<p>
+    <span data-bind="text:TitleExcerpts"> </span>
+</p>
+<p>Friends(<span data-bind="text:friends().length"></span>)</p>
+<ul data-bind="foreach:friends">
+    <li>
+        <span data-bind="text:name"></span>
+        <input type="checkbox" data-bind="checked:knowJS" />
+        <input data-bind="value:favLib, visible:knowJS" />
+        <button data-bind="click:removeFriend">X</button>
+    </li>
+</ul>
+<button data-bind="click:addFriend, enable:friends().length <5">Add Friends</button>
+
+<script>
+    // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
+
+
+    function Friend(name) {
+        var self = this
+        self.name = name;
+        self.knowJS = ko.observable(false);
+        self.favLib = ko.observable(' ');
+        self.removeFriend = function () {
+               self.friends.remove(self);
+        }
+    }
+
+    function AppViewModel() {
+        var self = this
+        self.Title = ko.observable("Bert");
+        self.Excerpts = ko.observable("Bertington");
+        self.TitleExcerpts = ko.computed(function () {
+            return self.Title() + ' ' + self.Excerpts();
+
+        })
+        self.friends = ko.observableArray([new Friend(self.Title()), new Friend('Tim')]);
+
+        //Add friends
+        self.addFriend = function () {
+            self.friends.push(new Friend('new'));
+        }
+        
+    }
+
+    // Activates knockout.js
+    ko.applyBindings(new AppViewModel());
+</script>

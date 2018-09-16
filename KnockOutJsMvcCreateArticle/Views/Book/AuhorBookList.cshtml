@@ -1,0 +1,60 @@
+﻿<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+@{
+    ViewBag.Title = "AuhorBookList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Author and Book List</h2>
+
+
+@{
+    ViewBag.Title = "Author and Books";
+}
+
+<div class="row">
+    <div id="bookslist">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Books</h2>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("BookList")
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="authorlist">
+        <div class="col-md-6">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Authors</h2>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("~/Views/Author/AuthorList.cshtml")
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+<div class="row">
+    <div id="bookauthorlist">
+    <div class="col-md-10">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title">Search Results</h2>
+            </div>
+            <div class="panel-body">
+                @Html.Partial("~/Views/Author/_BookAuthorSearchResult.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<!--Have to add the script at the bottom to allow the DIV ID to be binding in KO-->
+
+
+<script src="~/Scripts/ViewModel/vmBooksandAuthors - mapping.js"></script>

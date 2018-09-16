@@ -1,0 +1,124 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Book
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+<div id="KOeditBook">
+    <div class="col-md-6">
+
+        <fieldset>
+            <legend>Book</legend>
+          
+        
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AuthorId)
+            </div>
+            <div class="editor-field">
+             @*      @Html.EditorFor(model => model.AuthorId) *@ 
+              
+              
+                <input data-bind="value:AuthorId" type="text" title="AuthorId" />
+
+            </div>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+                <input data-bind="value:Title" type="text" title="Title" />
+                
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Isbn, new { data_bind = "value: Isbn" })
+            </div>
+            <div class="editor-field">
+                @Html.TextBox("Isbn", @Model.Isbn, new Dictionary<string, object> { { "data-bind", "value: Isbn" }, { "style", "width:100px" } })
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Synopsis)
+            </div>
+            <div class="editor-field">
+                
+                <input data-bind="value:Synopsis" type="text" title="Synopsis" />
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                <input data-bind="value:Description" type="text" title="Description" />
+               
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ImageUrl)
+            </div>
+            <div class="editor-field">
+                
+                <input data-bind="value:ImageUrl" type="text" title="ImageUrl" />
+          
+            </div>
+
+            <p>
+                <button data-bind="click: update"> Update</button>
+            </p>
+        </fieldset>
+
+        </div>
+    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index", "BookAuthor")
+            
+        </div>
+        <script type="text/javascript">
+    function BookViewModel() {
+        self = this;
+
+        self.Id = ko.observable("@Model.Id");
+        self.Title = ko.observable("@Model.Title");
+        self.Isbn = ko.observable("@Model.Isbn");
+        self.AuthorId = ko.observable("@Model.AuthorId");
+        self.Synopsis = ko.observable("@Model.Synopsis");
+        self.Description = ko.observable("@Model.Description");
+        self.ImageUrl = ko.observable("@Model.ImageUrl");
+
+                self.Book = {
+                    Id: ko.observable("@Model.Id"),
+                    Title: ko.observable("@Model.Title"),
+                    Isbn : ko.observable("@Model.Isbn"),
+                    AuthorId : ko.observable("@Model.AuthorId"),
+                    Synopsis : ko.observable("@Model.Synopsis"),
+                    Description : ko.observable("@Model.Description"),
+                    ImageUrl : ko.observable("@Model.ImageUrl")
+                };
+
+              //  self.Book = ko.observable();
+
+                self.update = function () {
+                    var dataObject = ko.toJSON(this);
+                  //  var Book = self.Book();
+                    var id = self.Book.Id();
+                    alert(id);
+                    $.ajax({
+                        url: '/api/bookapi/'+id,
+                        type: 'PUT',
+                        data: dataObject,
+                        contentType: 'application/json',
+                        success: function (data) { //After inserting into DB, add into table list
+                          //  alert("Record Updated Successfully");
+                            window.location.href = 'http://localhost:57367/BookAuthor';
+                            // self.Description('');
+                        }
+                    });
+
+                };
+            }
+
+            $(document).ready(function () {
+
+                ko.applyBindings(new BookViewModel(), document.getElementById("KOeditBook"));
+            })
+        </script>

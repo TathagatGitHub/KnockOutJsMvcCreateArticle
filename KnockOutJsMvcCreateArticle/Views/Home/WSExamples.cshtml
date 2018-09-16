@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "WSExamples";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Web Services Examples</h2>
+
+<li class="label-success shadow "><a href="@Url.Action("ConvertTemp", "Home")">XML SOAP WS to convert temp</a></li>
+<p>
+    Uses SOAP XML Web Service to conver the temparature: <br />
+    1. Add Service References, through adding WSDL. Generates the proxy class and adds references in Web.config. <br />
+    2. Use the "ServiceReference.GeneratedProxyclasses.ContractName" to call the methods. <br />  var service = new TempConvertReference.TempConvertSoapClient("TempConvertSoap"); <br/>
+    Where, Service Reference = "TempConvertReference", Proxy class "TempConvertSoapClient", contract "TempConvertSoap"
+
+</p>
+<li class="label-primary shadow "><a href="@Url.Action("StockQuote", "Home")">XML SOAP WS to get Stock</a></li>
+<p>
+    Uses SOAP XML Web Service to get the Stock: <br />
+    1. Add Service References, through adding WSDL. Generates the proxy class and adds references in Web.config. <br />
+    2. Use the "ServiceReference.GeneratedProxyclasses.ContractName" to call the methods. <br />  
+
+</p>
+
+<li class="label-default shadow "><a href="@Url.Action("HttpClientXMLStockQuote", "Home")">HTTPClient XML SOAP WS to get Stock</a></li>
+<p>
+    Uses REST HTTP Client Soap XML Web Service to get the quote: <br />
+    1. Create a client obj using "new System.Net.Http.HttpClient()". <br/>
+    2. Add baseurl, and set the data type like xml or JSON. <br />
+    3. Call "GetAsync", to get the response from WS.<br />
+    4. Parse the xml response to get your values.<br />
+
+</p>
+<li class="label-warning shadow "><a href="@Url.Action("RestApiWebClient", "Home")">REST API-WebClient call to weather in JSON</a></li>
+<p>
+    Uses Rest WebClient to get the weather data in JSON: <br />
+    1. Create a client obj using "new System.Net.WebClient()". <br />
+    2. Call method "DownloadString" with the base url. <br />
+    3. Get JSON data.<br />
+    4. Parse the JSON response to get your values.<br />
+
+</p>
+<li class="label-danger shadow "><a href="@Url.Action("HttpClientMethod", "Home")">REST HTTPClient  </a></li>
+<p>
+    Uses SOAP XML Web Service to conver the temparature: <br />
+    1. Add Service References, through adding WSDL. Generates the proxy class and adds references in Web.config. <br />
+    2. Use the "ServiceReference.GeneratedProxyclasses.ContractName" to call the methods. <br />  var service = new TempConvertReference.TempConvertSoapClient("TempConvertSoap"); <br />
+    Where, Service Reference = "TempConvertReference", Proxy class "TempConvertSoapClient", contract "TempConvertSoap"
+
+</p>
+<li class="label-danger shadow "><a href="@Url.Action("HttpClientMethodAPNSearch", "Home")">REST HTTPClient Json  </a></li>
+<p>
+    Uses SOAP XML Web Service to conver the temparature: <br />
+    1. Add Service References, through adding WSDL. Generates the proxy class and adds references in Web.config. <br />
+    2. Use the "ServiceReference.GeneratedProxyclasses.ContractName" to call the methods. <br />  var service = new TempConvertReference.TempConvertSoapClient("TempConvertSoap"); <br />
+    Where, Service Reference = "TempConvertReference", Proxy class "TempConvertSoapClient", contract "TempConvertSoap"
+
+</p>

@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+  @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <!-- Commented these two lines, since added the above two lines.
+         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+         -->
+   
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/dt/dt-1.10.10/datatables.min.css" />  
+    <link href="~/Content/Site.css" rel="stylesheet" />
+  <!-- 
+      <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        
+      -->
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+   
+
+@Styles.Render("~/Content/CustomCss")
+    
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/knockout")
+    @Scripts.Render("~/bundles/knockoutMapping")
+    <script type="text/javascript" src="https://cdn.datatables.net/s/dt/dt-1.10.10/datatables.min.js"></script>
+      
+    
+</head>
+<body>
+
+    <div class="container">
+        <div class="float-left">
+            <p class="site-title label-danger shadow">@Html.ActionLink("Knockout and MVC Examples", "Index", "Home")</p>
+        </div>
+        <div class="float-right">
+            <section id="login">
+                @Html.Partial("_LoginPartial")
+            </section>
+
+        </div>
+    </div>
+           
+       <hr />
+    
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="myNavbar" >
+            <div class=" container-fluid">
+                <ul class="nav nav-tabs">
+                    @if (User.Identity.IsAuthenticated)
+    {
+        if (User.IsInRole("Admin"))
+        {
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle label-default shadow">Administration<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="label-success shadow"><a href="@Url.Action("Administration", "Home")">Manage users and roles</a></li>
+
+                    </ul>
+                </li>
+}
+                <li class="label-primary shadow"><a href="@Url.Action("PartialIndex", "Article")">Partial Views - ModelViews</a></li>
+                <li class="label-primary shadow"><a href="@Url.Action("AuhorBookList", "Book")">Author and Book List</a></li>
+                <li class="label-success shadow"><a href="@Url.Action("NestedVM", "Article")">Multiple ViewModels</a></li>
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle label-info shadow">Data Bind Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="label-default shadow"><a href="@Url.Action("Example4", "Article")">Example4</a></li>
+                        <li class="label-warning shadow"><a href="@Url.Action("Example2", "Article")">Example2</a></li>
+                        <li class="label-success shadow"><a href="@Url.Action("Example3", "Article")">Example3</a></li>
+
+                    </ul>
+                </li>
+
+                <li class="label-danger shadow"><a href="@Url.Action("IndexRazor", "Article")">Jason Mapping-Model to ViewModel</a></li>
+                <li class="label-warning shadow"><a href="@Url.Action("EditGrid", "Article")">Edit Grid - Web Api - Razor</a></li>
+
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle label-primary shadow">Mapping <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="label-primary shadow"><a href="@Url.Action("Mapping", "Article")">Mapping</a></li>
+                        <li class="label-info shadow"><a href="@Url.Action("Mappingajax", "Article")">MappingAjax</a></li>
+                    </ul>
+                </li>
+
+                <li class="label-danger shadow"><a href="@Url.Action("Index", "Author")">Authors</a></li>
+                <li class="label-warning shadow"><a href="@Url.Action("Index", "BookAuthor")">VM KO PartialView</a></li>
+                <li class="label-warning shadow"><a href="@Url.Action("IndexMVCModelKOMapping", "BookAuthor")">MVC Model KO Mapping PartialView</a></li>
+
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle label-default shadow">JQuery Datatable <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="label-default shadow "><a href="@Url.Action("Index", "Book")">JQuery Datatable</a></li>
+                        <li class="label-success shadow "><a href="@Url.Action("WebAPIIndex", "Book")">WebAPI JQuery DT</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle label-info shadow">WS Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+
+                        <li class="label-success shadow "><a href="@Url.Action("WSExamples", "Home")">Web Services Examples</a></li>
+
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="" data-toggle="dropdown" class="dropdown-toggle label-success shadow">XML Examples <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="label-success shadow "><a href="@Url.Action("LINQ_TO_XML_ELEMENTS", "Home")">Linq to XML-Elements</a></li>
+                        <li class="label-danger shadow "><a href="@Url.Action("HttpClientXMLStockQuote", "Home")">Linq to XML-Descendants</a></li>
+                        <li class="label-default shadow "><a href="@Url.Action("HttpClientXMLXPathParsing", "Home")">XPath Parsing</a></li>
+                        <li class="label-default shadow "><a href="@Url.Action("ReadXMLFromFile", "Home")">ReadXMLFromFile-Webgrid</a></li>
+                        <li class="label-default shadow "><a href="@Url.Action("xmlToHTML", "Home")">xmlToHTML</a></li>
+                    </ul>
+                </li>
+                <li class="label-primary shadow"><a href="@Url.Action("CreateWizard", "Book")">Step JS - FormCollection - WebApi</a></li>
+                <li class="label-primary shadow"><a href="@Url.Action("CreateWizardStepJs", "Book")">Step JS - Data Serialize- WebApi</a></li>
+
+}
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+              
+                <!--/span-->
+
+                <div id="body">
+                    @RenderSection("featured", required: false)
+                    <section class="content-wrapper main-content clear-fix">
+                        @RenderBody()
+                    </section>
+                </div>
+            </div>
+            <!--/row-->
+            <hr>
+            <footer>
+                <p>&copy; MyTecBits.com 2013</p>
+            </footer>
+        </div><!--/.fluid-container-->
+        @RenderSection("scripts", required: false)
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $('.dropdown-toggle').dropdown();
+    });
+
+    $('ul.nav li.dropdown').hover(function () {
+        jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn();
+    }, function () {
+        jQuery(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut();
+    });
+</script>

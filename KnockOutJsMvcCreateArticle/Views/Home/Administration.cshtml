@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewBag.Title = "Administration";
+}
+
+<h2>Administration</h2>
+<div class="row">
+<div id="_CreateRoles" class="col-md-5">
+    <div class="panel panel-success shadow">
+        <div class="panel-heading">
+            <h2 class="panel-title">Roles</h2>
+        </div>
+        <div class="panel-body">
+         @foreach (var item in (List<string>)ViewBag.allRoles)
+         {
+            <p>@item</p>
+         }
+        </div>
+    </div>
+</div>
+
+<div id="_CreateRoles" class="col-md-5">
+    <div class="panel panel-success shadow">
+        <div class="panel-heading">
+            <h2 class="panel-title">Users</h2>
+        </div>
+        <div class="panel-body">
+        @foreach (var item in (List<string>)ViewBag.allUsers)
+        {
+            <p>@item</p>
+        }
+    </div>
+
+    </div>
+</div>
+    </div>
+<div class="row">
+<div id="_CreateRoles" class="col-md-4">
+    <div class="panel panel-success shadow">
+        <div class="panel-heading">
+            <h2 class="panel-title">Create Role</h2>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("CreateRole", "Home", FormMethod.Post))
+            {
+                <label>Role Name:</label> <input type="text" name="roleName" style='width:200px;background:khaki'/><br/>
+                <input type="submit" value="Create" />
+                                
+            }
+        </div>
+    </div>
+</div>
+<div id="_DeleteRoel" class="col-md-4">
+    <div class="panel panel-success shadow">
+        <div class="panel-heading">
+            <h2 class="panel-title">Assing Role</h2>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("AssingRole", "Home", FormMethod.Post))
+            {
+                <label>User Name:</label>
+             @Html.DropDownList("dropdowusers", new SelectList(ViewBag.dropdowusers, "Value", "Text", ViewBag.SelectedItem));
+
+                <label>Role Name:</label>
+                @Html.DropDownList("dropdownroles", new SelectList(ViewBag.dropdownroles, "Value", "Text", ViewBag.SelectedItem)); <br/>
+                
+                <input type="submit" value="Assign" />
+
+            }
+        </div>
+    </div>
+</div>
+
+<div id="_DeleteRoel" class="col-md-4">
+    <div class="panel panel-success shadow">
+        <div class="panel-heading">
+            <h2 class="panel-title">Remove user from Role</h2>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("RemoveRole", "Home", FormMethod.Post))
+            {
+                <label>User Name:</label>
+                @Html.DropDownList("dropdowusers", new SelectList(ViewBag.dropdowusers, "Value", "Text", ViewBag.SelectedItem));
+
+                <label>Role Name:</label>
+                @Html.DropDownList("dropdownroles", new SelectList(ViewBag.dropdownroles, "Value", "Text", ViewBag.SelectedItem));<br />
+                <input type="submit" value="Remove" />
+
+            }
+        </div>
+    </div>
+</div>
+</div>
+<div class="row">
+
+    <div id="_DeleteRoel" class="col-md-4">
+        <div class="panel panel-success shadow">
+            <div class="panel-heading">
+                <h2 class="panel-title">Delete User</h2>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("RemoveUser", "Home", FormMethod.Post))
+                {
+                    <label>User Name:</label>
+                    @Html.DropDownList("dropdowusers", new SelectList(ViewBag.dropdowusers, "Value", "Text", ViewBag.SelectedItem));
+
+                    <input type="submit" value="Delete" />
+
+                }
+            </div>
+        </div>
+    </div>
+
+</div>

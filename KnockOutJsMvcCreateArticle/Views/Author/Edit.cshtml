@@ -1,0 +1,86 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Author
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form id="addArticle" data-bind="submit: validateAndSave">
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <fieldset>
+        <legend>Author</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", data_bind = "value: author.firstName" } })
+            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", data_bind = "value: author.lastName" } })
+            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Biography, htmlAttributes: new { @class = "control-label col-md-2" })
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Biography, new { htmlAttributes = new { @class = "form-control", data_bind = "value: author.biography" } })
+            @Html.ValidationMessageFor(model => model.Biography, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" id="btnAddArticle" class="btn btn-primary" value="Add Article" data-bind="click: validateAndSave" />
+            </div>
+            
+        </div>
+    </fieldset>
+    
+    </form>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+
+        <script>
+            function AuthorViewModel(author) {
+                self.author = {
+                    id: author.Id,
+                    firstName: ko.observable(author.FirstName),
+                    lastName: ko.observable(author.LastName),
+                    biography: ko.observable(author.Biography)
+                };
+                self.validateAndSave = function (author) {
+                    alert(author.Id);
+                    $.ajax({
+                        url: '/api/authorapi/' ,
+                        type: 'put',
+                        contentType: 'application/json',
+                        data: ko.toJSON(self.author)
+                    })
+                    .done(function (o) { window.location.href = 'http://localhost:57367/Author/' });
+
+                };
+
+            }
+
+            var viewModel = new AuthorViewModel(@Html.HtmlConvertToJson(Model)); @* This where conversion needed from model to JavaScript String *@
+            ko.applyBindings(viewModel);
+</script>
+
+    }

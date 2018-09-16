@@ -1,0 +1,87 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Book
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+ @*     @using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+*@ 
+<div id="listBooks">
+    @using (Ajax.BeginForm("CreateAjaxBook", "Book", new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "listBooks" }))
+    {
+        <fieldset>
+            <legend>Book</legend>
+            <label data_bind="text: Title"></label>
+            @Html.LabelFor(model => model.Title, new { data_bind = "text:Title" })
+            <div class="editor-label">
+                @Html.LabelFor(model => model.AuthorId)
+            </div>
+            <div class="editor-field">
+                @*  @Html.EditorFor(model => model.AuthorId)*@
+                @Html.DropDownList("AuthorId", (IEnumerable<SelectListItem>)ViewBag.AuthorId)
+                @Html.ValidationMessageFor(model => model.AuthorId)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Title)
+            </div>
+            <div class="editor-field">
+               @* @Html.EditorFor(model => model.Title)*@
+                @Html.EditorFor(model => model.Title, new { @data_bind = "value: Title" })
+               @Html.TextBoxFor(model => model.Title, new { data_bind = "value:Title" });
+                <input type="text" data-bind="value: Title" />
+                @Html.ValidationMessageFor(model => model.Title)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Isbn)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Isbn)
+                @Html.ValidationMessageFor(model => model.Isbn)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Synopsis)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Synopsis)
+                @Html.ValidationMessageFor(model => model.Synopsis)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Description)
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.ImageUrl)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.ImageUrl)
+                @Html.ValidationMessageFor(model => model.ImageUrl)
+            </div>
+
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script type="text/javascript">
+    function AppViewModel() {
+
+        self = this;
+        self.Title = ko.observable("");
+
+}
+
+    //ko.applyBindings(AppViewModel, document.getElementById("listBooks"));
+    ko.applyBindings(AppViewModel, $("#listBooks")[0]);
+   
+</script>

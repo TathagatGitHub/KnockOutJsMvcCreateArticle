@@ -1,0 +1,104 @@
+﻿@using KnockOutJsMvcCreateArticle.Models
+@model IEnumerable<KnockOutJsMvcCreateArticle.Models.Author>
+
+@{
+    ViewBag.Title = "Authors";
+    var queryOptions = (QueryOptions)ViewBag.QueryOptions;
+}
+
+<h2>Authors</h2>
+
+<p>@Html.ActionLink("Create New", "Create") </p>
+<div style="display: none" data-bind="visible: authors.length > 0">
+    <table class="table table-bordered table-striped table-condensed">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                @*
+    <th>  @Html.BuildSortableLink("First Name", "Index", "FirstName", queryOptions)  </th>
+    <th>    @Html.BuildSortableLink("Last Name", "Index", "LastName", queryOptions)</th>
+                *@
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: authors">
+            <tr>
+                <td data-bind="text: FirstName"></td> <!--Not really using Models-->
+                <td data-bind="text: LastName"></td>
+                <td>
+                    @*<a data-bind="attr: { href: '@Url.Action("Details")/' + Id }" class="btn btn-info">Details</a>*@
+                    <a data-bind="click: $root.showDetails" class="btn btn-info">Details</a>
+                    <a data-bind="attr: { href: '@Url.Action("Edit", "Book")/' + Id }" class="btn btn-primary">Edit</a>
+                    <a data-bind="attr: { href: '@Url.Action("Delete")/' + Id }, click: $parent.showDeleteModal" class="btn btn-danger">Delete</a>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    @Html.BuildNextPreviousLinks(queryOptions, "Index")
+
+<div style="display: none" data-bind="visible: authors.length == 0"
+     class="alert alert-warning alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert">
+        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+    </button>
+    There are no authors to display. Click @Html.ActionLink("here", "Create")
+    to create one now.
+</div>
+    @section Scripts {
+        <script>
+            function ViewModel(authors) {
+                var self = this;
+                self.authors = authors;
+
+                self.showDetails = function (author) {
+                //    alert(author.Id);
+                  //  alert(author.LastName);
+                    $.ajax({
+                        url: '/api/authorapi/' + author.Id,
+                        type: 'GET',
+                        contentType: 'application/json',
+                        data: ko.toJSON(self.author)
+                    })
+                   .done(function (o) { window.location.href = 'http://localhost:57367/Author/Details/'+ author.Id });
+                    //.error(self.error)
+                    //.complete(function () { self.sending(false) });
+
+                }
+
+                self.successful = function () {
+                    // self.saveCompleted(true);
+                  //  alert(window.location.pathname);
+               //     $('.body-content').prepend('<div class="alert alert-success"> <strong>Success!</strong> Show Details.</div>');
+                     window.location.href = 'http://localhost:57367/Author/'  + author.Id;
+                };
+
+                self.error = function () {
+                    alert("error");
+                };
+                
+                self.showDeleteModal = function (data, event) {
+
+                    self.sending = ko.observable(false);
+                    $.get($(event.target).attr('href'), function (d) {
+
+                        $(".body-content").prepend(d);
+                        alert("Inside get");
+                        $("#deleteModal").modal("show");
+                        alert("Inside get");
+                        ko.applyBindings(self, document.getElementById("deleteModal"));
+                    });
+                };
+
+                self.deleteAuthor = function (form) {
+                    self.sending(true);
+                    return true;
+                };
+
+            };
+            var viewModel = new ViewModel(@Html.HtmlConvertToJson(Model)); @* This where conversion needed from model to JavaScript String *@
+            ko.applyBindings(viewModel);
+        </script>
+    }

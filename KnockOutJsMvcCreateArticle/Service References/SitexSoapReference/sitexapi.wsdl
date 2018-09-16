@@ -1,0 +1,3039 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://api.sitexdata.com/sitexapi/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://api.sitexdata.com/sitexapi/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://api.sitexdata.com/sitexapi/">
+      <s:element name="AddressSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OwnerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressSearchResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SitexApiResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfLocation" />
+          <s:element minOccurs="0" maxOccurs="1" name="MatchStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="APNSearchResults">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="ReportXML">
+            <s:complexType mixed="true">
+              <s:sequence>
+                <s:any />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Location" nillable="true" type="tns:Location" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Location">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZIP" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ZIP4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnitType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnitNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseCodeDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailUnitType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailUnit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailZip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerMailZip4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessmentYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestSaleRecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxDelinquency" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxRateCodeArea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalMarketValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BorrowAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalAssessedValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestSalePrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalBriefDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumUnits" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotSize" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotSizeUnits" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberOfStories" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AddressSearchWithUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UnitNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OwnerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressSearchWithUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressSearchWithUnitResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CountySearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CountySearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CountySearchResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApnSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApnSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApnSearchResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApnSearchExact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ApnSearchExactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ApnSearchExactResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BookNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PageNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DocumentSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentSearchResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocument">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BookNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PageNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FormatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentExact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BookNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PageNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FormatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentExactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentExactResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentCascade">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BookNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PageNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FormatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentCascadeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentCascadeResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentCascadeExact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BookNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PageNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FormatType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDocumentCascadeExactResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDocumentCascadeExactResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OwnerNameSearchWithWildCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OwnerNameSearchWithWildCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OwnerNameSearchWithWildCardResult" type="tns:SitexApiResultWithOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SitexApiResultWithOwner">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ReportURL" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfLocationWithOwnerName" />
+          <s:element minOccurs="0" maxOccurs="1" name="MatchStatus" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="APNSearchResults">
+            <s:complexType>
+              <s:sequence>
+                <s:any minOccurs="0" maxOccurs="unbounded" namespace="http://www.w3.org/2001/XMLSchema" processContents="lax" />
+                <s:any minOccurs="1" namespace="urn:schemas-microsoft-com:xml-diffgram-v1" processContents="lax" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfLocationWithOwnerName">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="LocationWithOwnerName" nillable="true" type="tns:LocationWithOwnerName" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LocationWithOwnerName">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Location" />
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="OwnerNameSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="OwnerNameSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OwnerNameSearchResult" type="tns:SitexApiResultWithOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressLookupWithWildCard">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="HouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PostDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressLookupWithWildCardResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressLookupWithWildCardResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressLookup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MinHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MaxHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PostDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressLookupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressLookupResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PropertySearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MinHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MaxHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UnitNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PostDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PropertySearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PropertySearchResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressLookupWithUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MinHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MaxHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UnitNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PostDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddressLookupWithUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddressLookupWithUnitResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PropertiesNearLatLon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Radius" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LandUseCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PropertiesNearLatLonResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PropertiesNearLatLonResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CascadeSearch">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OwnerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MinHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="MaxHouseNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UnitNumber" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PreDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="StreetName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PostDirection" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Suffix" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ZIPCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FirstName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Radius" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LandUseCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ReportType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ClientReference" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CascadeSearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CascadeSearchResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LienAlertReport">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LienAlertUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="BillingReference" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="RefID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OriginationDate" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OriginalLoanAmount" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Borrower1FName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Borrower1MName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Borrower1LName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Borrower2FName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Borrower2MName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Borrower2LName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PropertyFullStreetAddress" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PropertyCity" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PropertyState" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PropertyZip" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Last4SSN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FIPS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LienAlertReportResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LienAlertReportResult" type="tns:LienAlertResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="LienAlertResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="StatusCode" type="tns:Status" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TransactionID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Locations" type="tns:ArrayOfPropLocation" />
+          <s:element minOccurs="0" maxOccurs="1" name="LienAlertSummary" type="tns:LienAlertSummaryType" />
+          <s:element minOccurs="0" maxOccurs="1" name="LienAlertDetail" type="tns:LienAlertDetailType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AreaForeclosureActivityChart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NeighborhoodInsightChart" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LastValidSale" type="tns:LastValidSales" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnershipTransferHistory" type="tns:ArrayOfOwnershipTransferHistory" />
+          <s:element minOccurs="0" maxOccurs="1" name="MortgageHistory" type="tns:ArrayOfMortgageHistory" />
+          <s:element minOccurs="0" maxOccurs="1" name="DefaultHistory" type="tns:ArrayOfDefaultHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="Status">
+        <s:restriction base="s:string">
+          <s:enumeration value="OK" />
+          <s:enumeration value="MM" />
+          <s:enumeration value="NM" />
+          <s:enumeration value="NH" />
+          <s:enumeration value="IN" />
+          <s:enumeration value="NC" />
+          <s:enumeration value="NU" />
+          <s:enumeration value="NR" />
+          <s:enumeration value="NL" />
+          <s:enumeration value="ER" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfPropLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="PropLocation" nillable="true" type="tns:PropLocation" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropLocation">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:PropertyLocation">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="Owner" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="PropertyLocation">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FIPSStateCountyCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="APN" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnitType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UnitNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AddressStandardized" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CensusTract" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zoning" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LandUseStandardizedCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LandUseStandardizedDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThomasBrosPage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ThomasBrosGrid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyUse" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LienAlertSummaryType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MatchingCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForeclosureAlert" type="tns:ForeclosureAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnershipChangeAlert" type="tns:OwnershipChangeAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ARMResetAlert" type="tns:ARMResetAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewLoansAlert" type="tns:NewLoansAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="MLSListingAlert" type="tns:MLSListingAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="LienStatusChangeAlert" type="tns:LienStatusChangeAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueChangeAlert" type="tns:ValueChangeType" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxDelinquencyAlert" type="tns:TaxDelinquencyAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="BankruptcyAlert" type="tns:BankruptcyAlertType" />
+          <s:element minOccurs="0" maxOccurs="1" name="LiensJudgmentsAlert" type="tns:LiensJudgmentsAlertType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ForeclosureAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreDefaultAction" type="tns:PreDefaultActionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstLegalAction" type="tns:FirstLegalActionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ServiceAction" type="tns:ServiceActionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="JudgmentAction" type="tns:JudgmentActionType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleScheduled" type="tns:SaleScheduledType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleCancelled" type="tns:SaleCancelledType" />
+          <s:element minOccurs="0" maxOccurs="1" name="ForeclosureSaleHeld" type="tns:ForeclosureSaleHeldType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PreDefaultActionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfAction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FirstLegalActionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfAction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ServiceActionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfAction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JudgmentActionType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SaleScheduledType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AuctionDate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="SaleCancelledType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ForeclosureSaleHeldType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Date" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="REO" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OwnershipChangeAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Buyers" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Sellers" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfSale" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ARMResetAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ResetDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RateChangeFrequency" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="NewLoansAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewLoanRecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewLoanType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ShotgunAlert" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MLSListingAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MLSStatus" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LienStatusChangeAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousPosition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentPosition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalVoluntarySubLoans" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NewVoluntarySubLoanFlag" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestVoluntarySubLoanRecDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestVolutarySubLoanPosition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestVoluntarySubLoanAmount" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ValueChangeType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PreviousValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PercentageOfChange" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaxDelinquencyAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelinquentYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DelinquentAsOf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxBillAmount" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="BankruptcyAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeOfBankruptcy" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateFiled" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateDismissedDischarged" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LiensJudgmentsAlertType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Alert" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Liens" type="tns:ArrayOfInvoluntaryLien" />
+          <s:element minOccurs="0" maxOccurs="1" name="MoreThanFourLiens" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInvoluntaryLien">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InvoluntaryLien" nillable="true" type="tns:InvoluntaryLien" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InvoluntaryLien">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Number" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DateFiled" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Amount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClosedDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ClosedReason" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LienAlertDetailType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyInformation" type="tns:PropertyInformationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanInformation" type="tns:LoanInformationType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalPropertiesOwned" type="tns:AdditionalPropertiesOwnedType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PropertyInformationType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParcelNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentOwner" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerOccupied" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailCareOf" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailCity" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailZip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailZip4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyUse" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuildingArea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotSize" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bedrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Baths" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="YearBuilt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pool" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Fireplace" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="GarageType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeContruction" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Style" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ExtWalls" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssesseeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessmentYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessedLandValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessedImprValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalAssessedValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarketYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarketLandValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MarketImprValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalMarketValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxYear" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalTaxAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxDelinquentYrAssessor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxAccountID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxRateCodeArea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CAHomesteadExemption" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxExemptions" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalLot" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalBlock" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalSubdivision" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LegalBriefLegalDesc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestArmsLengthSaleDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LatestArmsLengthSalePrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstimatedValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstimatedValue_Range" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="EstimatedValue_ConfidenceScore" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LoanInformationType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="PropertyInActiveLoanCoverage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InputLoanPosition" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalLoans" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalSrLoanAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalJrLoanAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TotalCombinedLoanAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurEstTotalCombinedLoanAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OriginalLTV" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CurrentLTV" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Loans" type="tns:ArrayOfActiveLoan" />
+          <s:element minOccurs="0" maxOccurs="1" name="MoreThanFourLoans" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfActiveLoan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ActiveLoan" nillable="true" type="tns:ActiveLoan" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ActiveLoan">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Loans" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanRecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LenderName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LenderType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanAmount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TypeFinancing" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TDRate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TDDueDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADJRateRider" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ADJRateIndex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntRateNotLess" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntRateNotGreater" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChangeIndex" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RateChangeFreq" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaximumInt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IntOnlyPeriod" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FixedStep" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FirstChangeDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrepaymentRider" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrepaymentPenaltyRider" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AdditionalPropertiesOwnedType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="NumberOwned" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="AdditionalProperties" type="tns:ArrayOfAdditionalProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfAdditionalProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="AdditionalProperty" nillable="true" type="tns:AdditionalProperty" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="AdditionalProperty">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="County" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParcelNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="City" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="State" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zip4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AVM" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="LastValidSales">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SalePrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Buyer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seller" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOwnershipTransferHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="OwnershipTransferHistory" nillable="true" type="tns:OwnershipTransferHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="OwnershipTransferHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Saleamount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Buyer" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seller" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfMortgageHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="MortgageHistory" nillable="true" type="tns:MortgageHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MortgageHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LoanType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Loanamount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Borrower" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Lender" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfDefaultHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="DefaultHistory" nillable="true" type="tns:DefaultHistory" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DefaultHistory">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="RecordingDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DocumentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Loanamount" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Trustor" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MortgageDoc" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Beneficiary" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="MailingAddressLookup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastLine" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MailingAddressLookupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MailingAddressLookupResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MailingAddressLookupWithOwner">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Address" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LastLine" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OwnerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="MailingAddressLookupWithOwnerResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="MailingAddressLookupWithOwnerResult" type="tns:SitexApiResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableCreditForFarmXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Key" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAvailableCreditForFarmXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAvailableCreditForFarmXmlResult" type="tns:SitexApiAvailableCreditResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SitexApiAvailableCreditResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="AvailableCredit" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCountByShapesForFarmXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="titleApiFarmRequest" type="tns:TitleApiFarmRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="TitleApiFarmRequest">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="AccessKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Filter" type="tns:Filter" />
+          <s:element minOccurs="0" maxOccurs="1" name="Shapes" type="tns:ArrayOfShape" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ExtensionDataObject" />
+      <s:complexType name="Filter">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="EndDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxAVM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxBathrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxBedrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MaxSQFT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MinAVM" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MinBathrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MinBedrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MinSQFT" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerOccupied" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleTypes" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="StartDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxExemptionCodes" type="tns:ArrayOfString" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseCodes" type="tns:ArrayOfString" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfShape">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Shape" nillable="true" type="tns:Shape" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Shape">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Circle" type="tns:Circle" />
+          <s:element minOccurs="0" maxOccurs="1" name="Points" type="tns:ArrayOfPoint" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Circle">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="radius" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfPoint">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Point" nillable="true" type="tns:Point" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Point">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ExtensionData" type="tns:ExtensionDataObject" />
+          <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetCountByShapesForFarmXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCountByShapesForFarmXmlResult" type="tns:SitexApiFarmXmlCountResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SitexApiFarmXmlCountResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Count" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetDataByShapesForFarmXml">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="titleApiFarmRequest" type="tns:TitleApiFarmRequest" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDataByShapesForFarmXmlResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDataByShapesForFarmXmlResult" type="tns:SitexApiFarmXmlResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SitexApiFarmXmlResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="farmXmlRecords" type="tns:ArrayOfFarmXmlRecord" />
+          <s:element minOccurs="0" maxOccurs="1" name="errorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="StatusCode" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFarmXmlRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="FarmXmlRecord" nillable="true" type="tns:FarmXmlRecord" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FarmXmlRecord">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SiteAddressHouseNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteAddressStreetPrefix" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteAddressStreetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteAddressUnitNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteAddressCityState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SiteAddressZip4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerName2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner1FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner1MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner1LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner2FirstName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner2MiddleName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Owner2LastName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FullMailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailAddressCityState" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="MailAddressZip4" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="UseCodeDescription" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Zoning" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="BuildingArea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bedrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Bathrooms" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Pool" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberofStories" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NumberofUnits" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesPrice" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleTypeCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SaleDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="SalesDocumentNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessedLandValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessedImprovePercent" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="AssessedImprovementValue" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotArea" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LotAreaUnit" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ParcelNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="YearBuilt" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TBMapPageGrid" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Latitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Longitude" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="OwnerOccupied" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="CarrierRoute" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ValueEstimate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TaxExemptions" type="tns:TaxExemptions" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TaxExemptions">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="TaxExemption" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SitexApiResult" nillable="true" type="tns:SitexApiResult" />
+      <s:element name="SitexApiResultWithOwner" nillable="true" type="tns:SitexApiResultWithOwner" />
+      <s:element name="LienAlertResult" nillable="true" type="tns:LienAlertResult" />
+      <s:element name="SitexApiAvailableCreditResult" nillable="true" type="tns:SitexApiAvailableCreditResult" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="AddressSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:AddressSearch" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:AddressSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchWithUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:AddressSearchWithUnit" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchWithUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:AddressSearchWithUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="CountySearchSoapIn">
+    <wsdl:part name="parameters" element="tns:CountySearch" />
+  </wsdl:message>
+  <wsdl:message name="CountySearchSoapOut">
+    <wsdl:part name="parameters" element="tns:CountySearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:ApnSearch" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:ApnSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchExactSoapIn">
+    <wsdl:part name="parameters" element="tns:ApnSearchExact" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchExactSoapOut">
+    <wsdl:part name="parameters" element="tns:ApnSearchExactResponse" />
+  </wsdl:message>
+  <wsdl:message name="DocumentSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:DocumentSearch" />
+  </wsdl:message>
+  <wsdl:message name="DocumentSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:DocumentSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocument" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentExactSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentExact" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentExactSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentExactResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentCascade" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentCascadeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeExactSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDocumentCascadeExact" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeExactSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDocumentCascadeExactResponse" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchWithWildCardSoapIn">
+    <wsdl:part name="parameters" element="tns:OwnerNameSearchWithWildCard" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchWithWildCardSoapOut">
+    <wsdl:part name="parameters" element="tns:OwnerNameSearchWithWildCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:OwnerNameSearch" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:OwnerNameSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithWildCardSoapIn">
+    <wsdl:part name="parameters" element="tns:AddressLookupWithWildCard" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithWildCardSoapOut">
+    <wsdl:part name="parameters" element="tns:AddressLookupWithWildCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupSoapIn">
+    <wsdl:part name="parameters" element="tns:AddressLookup" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupSoapOut">
+    <wsdl:part name="parameters" element="tns:AddressLookupResponse" />
+  </wsdl:message>
+  <wsdl:message name="PropertySearchSoapIn">
+    <wsdl:part name="parameters" element="tns:PropertySearch" />
+  </wsdl:message>
+  <wsdl:message name="PropertySearchSoapOut">
+    <wsdl:part name="parameters" element="tns:PropertySearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:AddressLookupWithUnit" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:AddressLookupWithUnitResponse" />
+  </wsdl:message>
+  <wsdl:message name="PropertiesNearLatLonSoapIn">
+    <wsdl:part name="parameters" element="tns:PropertiesNearLatLon" />
+  </wsdl:message>
+  <wsdl:message name="PropertiesNearLatLonSoapOut">
+    <wsdl:part name="parameters" element="tns:PropertiesNearLatLonResponse" />
+  </wsdl:message>
+  <wsdl:message name="CascadeSearchSoapIn">
+    <wsdl:part name="parameters" element="tns:CascadeSearch" />
+  </wsdl:message>
+  <wsdl:message name="CascadeSearchSoapOut">
+    <wsdl:part name="parameters" element="tns:CascadeSearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="LienAlertReportSoapIn">
+    <wsdl:part name="parameters" element="tns:LienAlertReport" />
+  </wsdl:message>
+  <wsdl:message name="LienAlertReportSoapOut">
+    <wsdl:part name="parameters" element="tns:LienAlertReportResponse" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupSoapIn">
+    <wsdl:part name="parameters" element="tns:MailingAddressLookup" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupSoapOut">
+    <wsdl:part name="parameters" element="tns:MailingAddressLookupResponse" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupWithOwnerSoapIn">
+    <wsdl:part name="parameters" element="tns:MailingAddressLookupWithOwner" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupWithOwnerSoapOut">
+    <wsdl:part name="parameters" element="tns:MailingAddressLookupWithOwnerResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditForFarmXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAvailableCreditForFarmXml" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditForFarmXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAvailableCreditForFarmXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCountByShapesForFarmXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCountByShapesForFarmXml" />
+  </wsdl:message>
+  <wsdl:message name="GetCountByShapesForFarmXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCountByShapesForFarmXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDataByShapesForFarmXmlSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDataByShapesForFarmXml" />
+  </wsdl:message>
+  <wsdl:message name="GetDataByShapesForFarmXmlSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDataByShapesForFarmXmlResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchWithUnitHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchWithUnitHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="CountySearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CountySearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchExactHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchExactHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="DocumentSearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DocumentSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentExactHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentExactHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeExactHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeExactHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchWithWildCardHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchWithWildCardHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResultWithOwner" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResultWithOwner" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithWildCardHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="HouseNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithWildCardHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="PropertySearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PropertySearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithUnitHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithUnitHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="PropertiesNearLatLonHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Radius" type="s:string" />
+    <wsdl:part name="LandUseCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PropertiesNearLatLonHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="CascadeSearchHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Radius" type="s:string" />
+    <wsdl:part name="LandUseCode" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CascadeSearchHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="LienAlertReportHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="LienAlertUserName" type="s:string" />
+    <wsdl:part name="BillingReference" type="s:string" />
+    <wsdl:part name="RefID" type="s:string" />
+    <wsdl:part name="OriginationDate" type="s:string" />
+    <wsdl:part name="OriginalLoanAmount" type="s:string" />
+    <wsdl:part name="Borrower1FName" type="s:string" />
+    <wsdl:part name="Borrower1MName" type="s:string" />
+    <wsdl:part name="Borrower1LName" type="s:string" />
+    <wsdl:part name="Borrower2FName" type="s:string" />
+    <wsdl:part name="Borrower2MName" type="s:string" />
+    <wsdl:part name="Borrower2LName" type="s:string" />
+    <wsdl:part name="PropertyFullStreetAddress" type="s:string" />
+    <wsdl:part name="PropertyCity" type="s:string" />
+    <wsdl:part name="PropertyState" type="s:string" />
+    <wsdl:part name="PropertyZip" type="s:string" />
+    <wsdl:part name="Last4SSN" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LienAlertReportHttpGetOut">
+    <wsdl:part name="Body" element="tns:LienAlertResult" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupWithOwnerHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupWithOwnerHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditForFarmXmlHttpGetIn">
+    <wsdl:part name="Key" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditForFarmXmlHttpGetOut">
+    <wsdl:part name="Body" element="tns:SitexApiAvailableCreditResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchWithUnitHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressSearchWithUnitHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="CountySearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CountySearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchExactHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ApnSearchExactHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="DocumentSearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="DocumentSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentExactHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentExactHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeExactHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="RecordingDate" type="s:string" />
+    <wsdl:part name="DocumentNumber" type="s:string" />
+    <wsdl:part name="BookNumber" type="s:string" />
+    <wsdl:part name="PageNumber" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+    <wsdl:part name="FormatType" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetDocumentCascadeExactHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchWithWildCardHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchWithWildCardHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResultWithOwner" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="OwnerNameSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResultWithOwner" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithWildCardHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="HouseNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithWildCardHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="PropertySearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PropertySearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithUnitHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="AddressLookupWithUnitHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="PropertiesNearLatLonHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Radius" type="s:string" />
+    <wsdl:part name="LandUseCode" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="PropertiesNearLatLonHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="CascadeSearchHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+    <wsdl:part name="MinHouseNumber" type="s:string" />
+    <wsdl:part name="MaxHouseNumber" type="s:string" />
+    <wsdl:part name="UnitNumber" type="s:string" />
+    <wsdl:part name="PreDirection" type="s:string" />
+    <wsdl:part name="StreetName" type="s:string" />
+    <wsdl:part name="PostDirection" type="s:string" />
+    <wsdl:part name="Suffix" type="s:string" />
+    <wsdl:part name="City" type="s:string" />
+    <wsdl:part name="ZIPCode" type="s:string" />
+    <wsdl:part name="FirstName" type="s:string" />
+    <wsdl:part name="LastName" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="Latitude" type="s:string" />
+    <wsdl:part name="Longitude" type="s:string" />
+    <wsdl:part name="Radius" type="s:string" />
+    <wsdl:part name="LandUseCode" type="s:string" />
+    <wsdl:part name="ReportType" type="s:string" />
+    <wsdl:part name="ClientReference" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CascadeSearchHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="LienAlertReportHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="LienAlertUserName" type="s:string" />
+    <wsdl:part name="BillingReference" type="s:string" />
+    <wsdl:part name="RefID" type="s:string" />
+    <wsdl:part name="OriginationDate" type="s:string" />
+    <wsdl:part name="OriginalLoanAmount" type="s:string" />
+    <wsdl:part name="Borrower1FName" type="s:string" />
+    <wsdl:part name="Borrower1MName" type="s:string" />
+    <wsdl:part name="Borrower1LName" type="s:string" />
+    <wsdl:part name="Borrower2FName" type="s:string" />
+    <wsdl:part name="Borrower2MName" type="s:string" />
+    <wsdl:part name="Borrower2LName" type="s:string" />
+    <wsdl:part name="PropertyFullStreetAddress" type="s:string" />
+    <wsdl:part name="PropertyCity" type="s:string" />
+    <wsdl:part name="PropertyState" type="s:string" />
+    <wsdl:part name="PropertyZip" type="s:string" />
+    <wsdl:part name="Last4SSN" type="s:string" />
+    <wsdl:part name="APN" type="s:string" />
+    <wsdl:part name="FIPS" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="LienAlertReportHttpPostOut">
+    <wsdl:part name="Body" element="tns:LienAlertResult" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupWithOwnerHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+    <wsdl:part name="Address" type="s:string" />
+    <wsdl:part name="LastLine" type="s:string" />
+    <wsdl:part name="OwnerName" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="MailingAddressLookupWithOwnerHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiResult" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditForFarmXmlHttpPostIn">
+    <wsdl:part name="Key" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="GetAvailableCreditForFarmXmlHttpPostOut">
+    <wsdl:part name="Body" element="tns:SitexApiAvailableCreditResult" />
+  </wsdl:message>
+  <wsdl:portType name="SitexAPISoap">
+    <wsdl:operation name="AddressSearch">
+      <wsdl:input message="tns:AddressSearchSoapIn" />
+      <wsdl:output message="tns:AddressSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <wsdl:input message="tns:AddressSearchWithUnitSoapIn" />
+      <wsdl:output message="tns:AddressSearchWithUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <wsdl:input message="tns:CountySearchSoapIn" />
+      <wsdl:output message="tns:CountySearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <wsdl:input message="tns:ApnSearchSoapIn" />
+      <wsdl:output message="tns:ApnSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <wsdl:input message="tns:ApnSearchExactSoapIn" />
+      <wsdl:output message="tns:ApnSearchExactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <wsdl:input message="tns:DocumentSearchSoapIn" />
+      <wsdl:output message="tns:DocumentSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <wsdl:input message="tns:GetDocumentSoapIn" />
+      <wsdl:output message="tns:GetDocumentSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <wsdl:input message="tns:GetDocumentExactSoapIn" />
+      <wsdl:output message="tns:GetDocumentExactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <wsdl:input message="tns:GetDocumentCascadeSoapIn" />
+      <wsdl:output message="tns:GetDocumentCascadeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <wsdl:input message="tns:GetDocumentCascadeExactSoapIn" />
+      <wsdl:output message="tns:GetDocumentCascadeExactSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <wsdl:input message="tns:OwnerNameSearchWithWildCardSoapIn" />
+      <wsdl:output message="tns:OwnerNameSearchWithWildCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <wsdl:input message="tns:OwnerNameSearchSoapIn" />
+      <wsdl:output message="tns:OwnerNameSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <wsdl:input message="tns:AddressLookupWithWildCardSoapIn" />
+      <wsdl:output message="tns:AddressLookupWithWildCardSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <wsdl:input message="tns:AddressLookupSoapIn" />
+      <wsdl:output message="tns:AddressLookupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <wsdl:input message="tns:PropertySearchSoapIn" />
+      <wsdl:output message="tns:PropertySearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <wsdl:input message="tns:AddressLookupWithUnitSoapIn" />
+      <wsdl:output message="tns:AddressLookupWithUnitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <wsdl:input message="tns:PropertiesNearLatLonSoapIn" />
+      <wsdl:output message="tns:PropertiesNearLatLonSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <wsdl:input message="tns:CascadeSearchSoapIn" />
+      <wsdl:output message="tns:CascadeSearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <wsdl:input message="tns:LienAlertReportSoapIn" />
+      <wsdl:output message="tns:LienAlertReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <wsdl:input message="tns:MailingAddressLookupSoapIn" />
+      <wsdl:output message="tns:MailingAddressLookupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <wsdl:input message="tns:MailingAddressLookupWithOwnerSoapIn" />
+      <wsdl:output message="tns:MailingAddressLookupWithOwnerSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <wsdl:input message="tns:GetAvailableCreditForFarmXmlSoapIn" />
+      <wsdl:output message="tns:GetAvailableCreditForFarmXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCountByShapesForFarmXml">
+      <wsdl:input message="tns:GetCountByShapesForFarmXmlSoapIn" />
+      <wsdl:output message="tns:GetCountByShapesForFarmXmlSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByShapesForFarmXml">
+      <wsdl:input message="tns:GetDataByShapesForFarmXmlSoapIn" />
+      <wsdl:output message="tns:GetDataByShapesForFarmXmlSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SitexAPIHttpGet">
+    <wsdl:operation name="AddressSearch">
+      <wsdl:input message="tns:AddressSearchHttpGetIn" />
+      <wsdl:output message="tns:AddressSearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <wsdl:input message="tns:AddressSearchWithUnitHttpGetIn" />
+      <wsdl:output message="tns:AddressSearchWithUnitHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <wsdl:input message="tns:CountySearchHttpGetIn" />
+      <wsdl:output message="tns:CountySearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <wsdl:input message="tns:ApnSearchHttpGetIn" />
+      <wsdl:output message="tns:ApnSearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <wsdl:input message="tns:ApnSearchExactHttpGetIn" />
+      <wsdl:output message="tns:ApnSearchExactHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <wsdl:input message="tns:DocumentSearchHttpGetIn" />
+      <wsdl:output message="tns:DocumentSearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <wsdl:input message="tns:GetDocumentHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <wsdl:input message="tns:GetDocumentExactHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentExactHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <wsdl:input message="tns:GetDocumentCascadeHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentCascadeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <wsdl:input message="tns:GetDocumentCascadeExactHttpGetIn" />
+      <wsdl:output message="tns:GetDocumentCascadeExactHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <wsdl:input message="tns:OwnerNameSearchWithWildCardHttpGetIn" />
+      <wsdl:output message="tns:OwnerNameSearchWithWildCardHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <wsdl:input message="tns:OwnerNameSearchHttpGetIn" />
+      <wsdl:output message="tns:OwnerNameSearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <wsdl:input message="tns:AddressLookupWithWildCardHttpGetIn" />
+      <wsdl:output message="tns:AddressLookupWithWildCardHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <wsdl:input message="tns:AddressLookupHttpGetIn" />
+      <wsdl:output message="tns:AddressLookupHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <wsdl:input message="tns:PropertySearchHttpGetIn" />
+      <wsdl:output message="tns:PropertySearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <wsdl:input message="tns:AddressLookupWithUnitHttpGetIn" />
+      <wsdl:output message="tns:AddressLookupWithUnitHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <wsdl:input message="tns:PropertiesNearLatLonHttpGetIn" />
+      <wsdl:output message="tns:PropertiesNearLatLonHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <wsdl:input message="tns:CascadeSearchHttpGetIn" />
+      <wsdl:output message="tns:CascadeSearchHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <wsdl:input message="tns:LienAlertReportHttpGetIn" />
+      <wsdl:output message="tns:LienAlertReportHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <wsdl:input message="tns:MailingAddressLookupHttpGetIn" />
+      <wsdl:output message="tns:MailingAddressLookupHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <wsdl:input message="tns:MailingAddressLookupWithOwnerHttpGetIn" />
+      <wsdl:output message="tns:MailingAddressLookupWithOwnerHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <wsdl:input message="tns:GetAvailableCreditForFarmXmlHttpGetIn" />
+      <wsdl:output message="tns:GetAvailableCreditForFarmXmlHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="SitexAPIHttpPost">
+    <wsdl:operation name="AddressSearch">
+      <wsdl:input message="tns:AddressSearchHttpPostIn" />
+      <wsdl:output message="tns:AddressSearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <wsdl:input message="tns:AddressSearchWithUnitHttpPostIn" />
+      <wsdl:output message="tns:AddressSearchWithUnitHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <wsdl:input message="tns:CountySearchHttpPostIn" />
+      <wsdl:output message="tns:CountySearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <wsdl:input message="tns:ApnSearchHttpPostIn" />
+      <wsdl:output message="tns:ApnSearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <wsdl:input message="tns:ApnSearchExactHttpPostIn" />
+      <wsdl:output message="tns:ApnSearchExactHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <wsdl:input message="tns:DocumentSearchHttpPostIn" />
+      <wsdl:output message="tns:DocumentSearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <wsdl:input message="tns:GetDocumentHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <wsdl:input message="tns:GetDocumentExactHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentExactHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <wsdl:input message="tns:GetDocumentCascadeHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentCascadeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <wsdl:input message="tns:GetDocumentCascadeExactHttpPostIn" />
+      <wsdl:output message="tns:GetDocumentCascadeExactHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <wsdl:input message="tns:OwnerNameSearchWithWildCardHttpPostIn" />
+      <wsdl:output message="tns:OwnerNameSearchWithWildCardHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <wsdl:input message="tns:OwnerNameSearchHttpPostIn" />
+      <wsdl:output message="tns:OwnerNameSearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <wsdl:input message="tns:AddressLookupWithWildCardHttpPostIn" />
+      <wsdl:output message="tns:AddressLookupWithWildCardHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <wsdl:input message="tns:AddressLookupHttpPostIn" />
+      <wsdl:output message="tns:AddressLookupHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <wsdl:input message="tns:PropertySearchHttpPostIn" />
+      <wsdl:output message="tns:PropertySearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <wsdl:input message="tns:AddressLookupWithUnitHttpPostIn" />
+      <wsdl:output message="tns:AddressLookupWithUnitHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <wsdl:input message="tns:PropertiesNearLatLonHttpPostIn" />
+      <wsdl:output message="tns:PropertiesNearLatLonHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <wsdl:input message="tns:CascadeSearchHttpPostIn" />
+      <wsdl:output message="tns:CascadeSearchHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <wsdl:input message="tns:LienAlertReportHttpPostIn" />
+      <wsdl:output message="tns:LienAlertReportHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <wsdl:input message="tns:MailingAddressLookupHttpPostIn" />
+      <wsdl:output message="tns:MailingAddressLookupHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <wsdl:input message="tns:MailingAddressLookupWithOwnerHttpPostIn" />
+      <wsdl:output message="tns:MailingAddressLookupWithOwnerHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <wsdl:input message="tns:GetAvailableCreditForFarmXmlHttpPostIn" />
+      <wsdl:output message="tns:GetAvailableCreditForFarmXmlHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SitexAPISoap" type="tns:SitexAPISoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddressSearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/AddressSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/AddressSearchWithUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/CountySearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/ApnSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/ApnSearchExact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/DocumentSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocument" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocumentExact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocumentCascade" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocumentCascadeExact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/OwnerNameSearchWithWildCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/OwnerNameSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/AddressLookupWithWildCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/AddressLookup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/PropertySearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/AddressLookupWithUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/PropertiesNearLatLon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/CascadeSearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/LienAlertReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/MailingAddressLookup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/MailingAddressLookupWithOwner" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetAvailableCreditForFarmXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountByShapesForFarmXml">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetCountByShapesForFarmXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByShapesForFarmXml">
+      <soap:operation soapAction="http://api.sitexdata.com/sitexapi/GetDataByShapesForFarmXml" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SitexAPISoap12" type="tns:SitexAPISoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddressSearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/AddressSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/AddressSearchWithUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/CountySearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/ApnSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/ApnSearchExact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/DocumentSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocument" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocumentExact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocumentCascade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetDocumentCascadeExact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/OwnerNameSearchWithWildCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/OwnerNameSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/AddressLookupWithWildCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/AddressLookup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/PropertySearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/AddressLookupWithUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/PropertiesNearLatLon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/CascadeSearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/LienAlertReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/MailingAddressLookup" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/MailingAddressLookupWithOwner" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetAvailableCreditForFarmXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCountByShapesForFarmXml">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetCountByShapesForFarmXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDataByShapesForFarmXml">
+      <soap12:operation soapAction="http://api.sitexdata.com/sitexapi/GetDataByShapesForFarmXml" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SitexAPIHttpGet" type="tns:SitexAPIHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="AddressSearch">
+      <http:operation location="/AddressSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <http:operation location="/AddressSearchWithUnit" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <http:operation location="/CountySearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <http:operation location="/ApnSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <http:operation location="/ApnSearchExact" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <http:operation location="/DocumentSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <http:operation location="/GetDocument" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <http:operation location="/GetDocumentExact" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <http:operation location="/GetDocumentCascade" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <http:operation location="/GetDocumentCascadeExact" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <http:operation location="/OwnerNameSearchWithWildCard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <http:operation location="/OwnerNameSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <http:operation location="/AddressLookupWithWildCard" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <http:operation location="/AddressLookup" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <http:operation location="/PropertySearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <http:operation location="/AddressLookupWithUnit" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <http:operation location="/PropertiesNearLatLon" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <http:operation location="/CascadeSearch" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <http:operation location="/LienAlertReport" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <http:operation location="/MailingAddressLookup" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <http:operation location="/MailingAddressLookupWithOwner" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <http:operation location="/GetAvailableCreditForFarmXml" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SitexAPIHttpPost" type="tns:SitexAPIHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="AddressSearch">
+      <http:operation location="/AddressSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressSearchWithUnit">
+      <http:operation location="/AddressSearchWithUnit" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CountySearch">
+      <http:operation location="/CountySearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearch">
+      <http:operation location="/ApnSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ApnSearchExact">
+      <http:operation location="/ApnSearchExact" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DocumentSearch">
+      <http:operation location="/DocumentSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocument">
+      <http:operation location="/GetDocument" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentExact">
+      <http:operation location="/GetDocumentExact" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascade">
+      <http:operation location="/GetDocumentCascade" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDocumentCascadeExact">
+      <http:operation location="/GetDocumentCascadeExact" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearchWithWildCard">
+      <http:operation location="/OwnerNameSearchWithWildCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="OwnerNameSearch">
+      <http:operation location="/OwnerNameSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithWildCard">
+      <http:operation location="/AddressLookupWithWildCard" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookup">
+      <http:operation location="/AddressLookup" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertySearch">
+      <http:operation location="/PropertySearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddressLookupWithUnit">
+      <http:operation location="/AddressLookupWithUnit" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PropertiesNearLatLon">
+      <http:operation location="/PropertiesNearLatLon" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CascadeSearch">
+      <http:operation location="/CascadeSearch" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LienAlertReport">
+      <http:operation location="/LienAlertReport" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookup">
+      <http:operation location="/MailingAddressLookup" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MailingAddressLookupWithOwner">
+      <http:operation location="/MailingAddressLookupWithOwner" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAvailableCreditForFarmXml">
+      <http:operation location="/GetAvailableCreditForFarmXml" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SitexAPI">
+    <wsdl:port name="SitexAPISoap" binding="tns:SitexAPISoap">
+      <soap:address location="http://rc.api.sitexdata.com/sitexapi/sitexapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SitexAPISoap12" binding="tns:SitexAPISoap12">
+      <soap12:address location="http://rc.api.sitexdata.com/sitexapi/sitexapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SitexAPIHttpGet" binding="tns:SitexAPIHttpGet">
+      <http:address location="http://rc.api.sitexdata.com/sitexapi/sitexapi.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SitexAPIHttpPost" binding="tns:SitexAPIHttpPost">
+      <http:address location="http://rc.api.sitexdata.com/sitexapi/sitexapi.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

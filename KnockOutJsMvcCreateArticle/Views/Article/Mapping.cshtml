@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Mapping";
+}
+
+
+<span data-bind="text: LibraryName"> </span>
+    contains <span data-bind="text: AmountOfBooks">   </span>
+        books
+ <input data-bind="value: LibraryName" />
+        <script>
+
+      //      var libraryViewModel = {
+       //         LibraryName: ko.observable(),
+       //         AmountOfBooks: ko.observable()
+      //      }
+
+            var libraryModel=   {
+                LibraryName: "My home library",
+                AmountOfBooks: "5"
+            }
+
+            var libraryViewModel = ko.mapping.fromJS(libraryModel);
+          //  libraryViewModel.LibraryName(libraryModel.LibraryName);
+            //  libraryViewModel.AmountOfBooks(libraryModel.AmountOfBooks);
+            ko.mapping.fromJS(libraryModel, libraryViewModel);
+            ko.applyBindings(libraryViewModel);
+        </script>

@@ -1,0 +1,117 @@
+﻿@using KnockOutJsMvcCreateArticle.Models
+@using Newtonsoft.Json;
+@model IEnumerable<KnockOutJsMvcCreateArticle.Models.Author>
+
+<script src="~/Scripts/Knockout.mapping-2.4.1.js"></script>
+
+@{
+    ViewBag.Title = "Authors";
+    var ct = @Model.Count();
+}
+
+<div id="authorlist">
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="panel panel-danger shadow">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"># of Authors @Model.Count()</h2>
+                    </div>
+                    <div class="panel-body">
+                        @Ajax.ActionLink("Create New", "Create", "Author", new { id = "privacyLink" }, new AjaxOptions { UpdateTargetId = "authorlist" })
+
+
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: authors">
+                                <tr>
+                                    <td data-bind="text:FirstName"></td> <!--Not really using Models-->
+                                    <td data-bind="text:LastName"></td>
+                                    <td align="center">
+                                        @*
+    <input type="button" class="btn btn-danger btn-xs" value="Detais" data-bind="event: { mouseover: $root.details }" />
+                                        *@
+                                        <a data-bind="event: { mouseover: $root.details }" class="btn btn-info">Detail</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div style="display: none" data-bind="visible: showDetails">
+
+                    <div class="float-right">
+                        <div class="panel panel-primary shadow">
+                            <div class="panel-heading">
+                                <h2 class="panel-title">Detail - Caching enabled!</h2>
+                            </div>
+                            <table class="table">
+
+                                <tr><td>First Name</td><td data-bind="text: DetailFirstName"></td></tr>
+                                <tr><td>Last Name</td><td data-bind="text: DetailLastName"></td></tr>
+                                <tr><td>Full Name</td><td data-bind="text: DetailsFullName"></td></tr>
+                                <tr><td>Biography</td><td data-bind="text: DetailsBiography"></td></tr>
+                                
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </div>
+            <script type="text/javascript">
+
+                var DynamicModelLoading1 = function (data) {
+                    var self = this;
+                    self.DetailFirstName = ko.observable();
+                    self.DetailLastName = ko.observable();
+                    self.DetailsFullName = ko.observable();
+                    self.DetailsBiography = ko.observable();
+                    self.showDetails = ko.observable(false);
+
+                    ko.mapping.fromJS(data, {}, self);
+                    self.authors = data;
+
+                    self.details = function (authors) {
+                        self.showDetails(true);
+                    
+                        var urlPath = window.location.pathname;
+                        $.ajax({
+                            type: "GET",
+                            url: urlPath + '/DetailsJson/' + authors.Id,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                          //      alert(data.Id);
+                                self.DetailsFullName(data.FirstName + " " + data.LastName);
+                                self.DetailFirstName(data.FirstName);
+                                self.DetailLastName(data.LastName);
+                                self.DetailsBiography(data.Biography);
+                            },
+                            error: function (err) {
+                                alert(err.status + " " + err.statusText);
+                            }
+                        });
+
+                    };
+                };
+
+                var viewModel1 = new DynamicModelLoading1(@Html.Raw(Json.Encode(Model)));
+                // ko.applyBindings(viewModel);
+
+                ko.applyBindings(viewModel1, document.getElementById("authorlist"));
+
+            </script>

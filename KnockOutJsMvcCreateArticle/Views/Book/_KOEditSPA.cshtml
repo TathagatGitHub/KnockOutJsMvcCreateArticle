@@ -1,0 +1,73 @@
+﻿
+<script src="~/Scripts/jquery-1.9.1.js"></script>
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+<div id="KOeditBook">
+    <div class="col-md-6">
+        <form>
+            AuthorId:<input data-bind="value:AuthorId" type="text" title="AuthorId" />
+            Title:<input data-bind="value:Title" type="text" title="Title" />
+            Isbn: <input data-bind="text: Isbn" type="text"/>
+            Description: <input data-bind="text: Description" type="text" />
+            Synopsis: <input data-bind="text: Synopsis" type="text" />
+            ImageUrl: <input data-bind="text: ImageUrl" type="text" />
+        </form>  
+            
+            <p>
+                <button data-bind="click: update"> Update</button>
+            </p>
+      
+        </div>
+    </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index", "BookAuthor")
+            
+        </div>
+        <script type="text/javascript">
+    function BookViewModel() {
+        self = this;
+
+        self.Id = ko.observable("@Model.Id");
+        self.Title = ko.observable("@Model.Title");
+        self.Isbn = ko.observable("@Model.Isbn");
+        self.AuthorId = ko.observable("@Model.AuthorId");
+        self.Synopsis = ko.observable("@Model.Synopsis");
+        self.Description = ko.observable("@Model.Description");
+        self.ImageUrl = ko.observable("@Model.ImageUrl");
+
+                self.Book = {
+                    Id: ko.observable("@Model.Id"),
+                    Title: ko.observable("@Model.Title"),
+                    Isbn : ko.observable("@Model.Isbn"),
+                    AuthorId : ko.observable("@Model.AuthorId"),
+                    Synopsis : ko.observable("@Model.Synopsis"),
+                    Description : ko.observable("@Model.Description"),
+                    ImageUrl : ko.observable("@Model.ImageUrl")
+                };
+
+              //  self.Book = ko.observable();
+
+                self.update = function () {
+                    var dataObject = ko.toJSON(this);
+                  //  var Book = self.Book();
+                    var id = self.Book.Id();
+                    alert(id);
+                    $.ajax({
+                        url: '/api/bookapi/'+id,
+                        type: 'PUT',
+                        data: dataObject,
+                        contentType: 'application/json',
+                        success: function (data) { //After inserting into DB, add into table list
+                            alert("Record Updated Successfully");
+                            window.location.href = 'http://localhost:57367/BookAuthor';
+                            // self.Description('');
+                        }
+                    });
+
+                };
+            }
+
+            $(document).ready(function () {
+
+                ko.applyBindings(new BookViewModel(), document.getElementById("KOeditBook"));
+            })
+        </script>

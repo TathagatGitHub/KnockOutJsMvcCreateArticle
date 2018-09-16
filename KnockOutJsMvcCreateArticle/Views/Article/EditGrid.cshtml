@@ -1,0 +1,159 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Article
+
+@{
+    ViewBag.Title = "EditGrid";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditGrid</h2>
+@*   asp.net/web-api/overview/older-versions/using-web-api-1-with-entity-framework-5/using-web-api-with-entity-framework,-part-5
+*@
+
+@section Scripts {
+    <script type="text/javascript">
+        // The VM
+        function ArticleViewModel() {
+            var self = this;
+            self.articles = ko.observableArray();
+            self.detailsTitle = ko.observable();
+            self.detailsExcerpt = ko.observable();
+            self.detailsContent = ko.observable();
+            self.showDetails = ko.observable(false);
+            var baseUri = '@ViewBag.ApiUrl';
+
+            self.create = function (formElement) {
+                // If valid, post the serialized form data to the web api
+             //   $(formElement).validate();
+               
+                    $.post('/api/articleapi/', $(formElement).serialize(), null, "json")
+                        .done(function (o) { self.articles.push(o); });
+                
+            }
+
+            self.update = function (article) {
+               // alert(article.id);
+                $.ajax({ type: "PUT", url: '/api/articleapi/' + article.id, data: article });
+
+            }
+
+            self.remove = function (article) {
+                // First remove from the server, then from the UI
+                $.ajax({ type: "DELETE", url: '/api/articleapi' + '/' + article.id })
+                    .done(function () { self.articles.remove(article); });
+            }
+
+            self.details = function (article) {
+                // First remove from the server, then from the UI
+                self.showDetails(true);
+                $.ajax({ type: "GET", url: '/api/articleapi' + '/' + article.id })
+                    .done(function () { self.detailsTitle(article.Title); self.detailsExcerpt(article.Excerpts); self.detailsContent(article.Content); });
+             }
+
+            $.getJSON('/api/articleapi/', self.articles);
+        }
+
+        // Now bind the VM
+        $(document).ready(function () {
+            ko.applyBindings(new ArticleViewModel());
+        })
+    </script>
+}
+<div class="row">
+    <div class="col-md-5 float-left">
+        <table class="table-striped table-condensed">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Excerpts</th>
+                    <th>Content</th>
+                    <th></th>
+                    <th class="text-danger text-center"> Actions</th>
+                </tr>
+            </thead>
+            <tbody data-bind="foreach: articles">
+                <tr>
+                    <td data-bind="text: id"></td>
+
+                    <td> <input style="width: 50px;" type="text" data-bind="value: Title" /></td>
+
+                    <td><input style="width: 50px;" type="text" data-bind="value: Excerpts" /></td>
+
+                    <td> <input style="width: 50px;" type="text" data-bind="value: Content" /></td>
+
+                    <td>
+                        <input type="button" class="btn btn-danger btn-xs" id="updatebutton" value="Update" data-bind="click: $parent.update" />
+                    </td>
+
+                    <td>
+                        <input type="button" class="btn btn-danger btn-xs" value="Remove" data-bind="click: $root.remove" />
+                    </td>
+                    <td>
+                        <input type="button" class="btn btn-danger btn-xs" value="Detais" data-bind="event: { mouseover: $root.details }" />
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+
+    <div class="col-md-4">
+
+        <form id="addArticle" data-bind="submit: create" class="float-left">
+            @Html.ValidationSummary(true)
+            <fieldset class="float-left">
+                <legend>Contact</legend>
+                @Html.EditorForModel()
+                <p>
+                    <input type="submit" value="Save" />
+                </p>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-md-3">
+        <div style="display: none" data-bind="visible: showDetails">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Detail</h2>
+                </div>
+                <table class="table">
+
+                    <tr><td>Title</td><td data-bind="text: detailsTitle"></td></tr>
+                    <tr><td>Excerpts</td><td data-bind="text: detailsExcerpt"></td></tr>
+                    <tr><td>Content</td><td data-bind="text: detailsContent"></td></tr>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-5 float-left">
+        
+
+    </div>
+
+
+    <div class="col-md-4">
+
+    </div>
+
+    <div class="col-md-3">
+        <div style="display: none" data-bind="visible: showDetails">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Detail</h2>
+                </div>
+         
+            </div>
+        </div>
+
+    </div>
+</div>

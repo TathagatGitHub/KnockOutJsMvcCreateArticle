@@ -1,0 +1,53 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Location
+
+<fieldset>
+    <legend>Location</legend>
+
+    Name:@Html.DisplayFor(model => model.name)
+    
+    Region:@Html.DisplayFor(model => model.region)
+    
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.country)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.country)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lat)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lat)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.lon)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.lon)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.tz_id)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.tz_id)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.localtime_epoch)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.localtime_epoch)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.localtime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.localtime)
+    </div>
+</fieldset>
+

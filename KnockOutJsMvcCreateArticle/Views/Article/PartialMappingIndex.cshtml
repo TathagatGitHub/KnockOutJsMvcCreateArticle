@@ -1,0 +1,49 @@
+﻿@using System.Web.Script.Serialization;
+
+@model IEnumerable<KnockOutJsMvcCreateArticle.Models.Article>
+
+@{
+    ViewBag.Title = "Article Register";
+}
+<script src="~/Scripts/ViewModel/ArticleListMapping.js"></script>
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table-bordered table-condensed table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Excerpts)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Content)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title, new { data_bind = "value: Title" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Excerpts, new { data_bind = "value: Excerpts" })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content, new { data_bind = "value: Content" })
+            </td>
+            <td>
+                @Html.ActionLink("JSON Mapping Edit", "EditJSONMapping", new { id = item.id }) |
+                @Html.ActionLink("JASON Mapping Details", "JsonModelView", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+    }
+
+</table>

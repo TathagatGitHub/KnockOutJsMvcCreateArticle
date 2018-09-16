@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Example3";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Example3</h2>
+<script src="~/Scripts/knockout-2.2.0.js"></script>
+<script src="~/Scripts/Knockout.mapping-2.4.1.js"></script>
+<table>
+    <tr>
+        <td>
+            <form data-bind="submit: addItem">
+                New item:
+                <input data-bind='value: itemToAdd, valueUpdate: "afterkeydown"' />
+                <button type="submit" data-bind="enable: itemToAdd().length > 0">Add</button>
+                <p>Your items:</p>
+                <select multiple="multiple" width="50" data-bind="options: items"> </select>
+            </form>
+        </td>
+        <td>
+
+        </td>
+    </tr>
+</table>
+           
+
+<script>
+    var SimpleListModel = function (items) {
+        this.items = ko.observableArray(items);
+        this.itemToAdd = ko.observable("");
+        this.addItem = function () {
+            if (this.itemToAdd() != "") {
+                this.items.push(this.itemToAdd()); // Adds the item. Writing to the "items" observableArray causes any associated UI to update.
+                this.itemToAdd(""); // Clears the text box, because it's bound to the "itemToAdd" observable
+            }
+        }.bind(this);  // Ensure that "this" is always this view model
+    };
+
+    ko.applyBindings(new SimpleListModel(["Alpha", "Beta", "Gamma"]));
+</script>

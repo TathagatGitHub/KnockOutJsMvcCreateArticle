@@ -1,0 +1,70 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Book
+
+<script src="~/Scripts/jquery-1.8.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Book</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AuthorId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.AuthorId)
+            @Html.ValidationMessageFor(model => model.AuthorId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Isbn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Isbn)
+            @Html.ValidationMessageFor(model => model.Isbn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Synopsis)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Synopsis)
+            @Html.ValidationMessageFor(model => model.Synopsis)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageUrl)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ImageUrl)
+            @Html.ValidationMessageFor(model => model.ImageUrl)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

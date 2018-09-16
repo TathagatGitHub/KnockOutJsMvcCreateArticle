@@ -1,0 +1,59 @@
+﻿
+.main-content {
+    background-color:white;
+}
+
+margin{
+    background-color:transparent;
+}
+footer {
+    clear: both;
+    background-color: white;
+    font-size: .8em;
+    height: 100px;
+}
+    
+    .shadow {
+                -moz-box-shadow: 1px 3px 5px 6px #ccc;
+                -webkit-box-shadow: 1px 5px 7px 8px #ccc;
+                box-shadow: 1px 5px 7px 8px #ccc;
+            }
+
+  .btn{
+      border-radius: 25px;
+  }
+  body{
+      background-color:white;
+  }
+
+.content-wrapper {
+    margin: 0 auto;
+    max-width: 1560px;
+}
+ul,li{
+    border-radius:25px;
+    margin-left:3px;
+    
+}
+
+.dropdown-toggle{
+    border-radius:25px;
+}
+.row{
+    height:275px;
+    margin-bottom:5px;
+    margin-top:5px;
+    padding-bottom:2px;
+    padding-top:2px;
+    padding-right:20px;
+    padding-left:20px;
+}
+li.first{
+    max-width: 220px;
+}
+li.current{
+    max-width: 300px;
+}
+li.disabled{
+    max-width: 120px;
+}

@@ -1,0 +1,48 @@
+﻿@using System.Web.Script.Serialization;
+@model KnockOutJsMvcCreateArticle.Models.Article
+
+@{
+    ViewBag.Title = "JsonModelView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form id="addArticle" data-bind="submit: save">
+<span data-bind="text: id"> </span>
+<span data-bind="text: Title"> </span>
+@Html.TextBoxFor(model => model.Title, new { data_bind = "value: Title" })
+<span data-bind="text: Excerpts"> </span>
+<span data-bind="text: Content"> </span>
+    <div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+
+    </div>
+</form>
+<script>
+    var ViewModel = function (data) {
+        var self = this;
+        ko.mapping.fromJS(data, {}, self);
+
+        "/Load?id=1"
+        self.save = function () {
+            $.ajax({
+                url: "Create",
+                type: "post",
+                contentType: "application/json",
+                data: ko.mapping.toJSON(self),
+                success: function (response) {
+                    alert(response.Status);
+                }
+            });
+        };
+    };
+    // Load the Model Data
+    $.getJSON("Load?id=1", null, function (data) {
+            ko.applyBindings(new ViewModel(data));
+        });
+        
+  
+</script>
+
+

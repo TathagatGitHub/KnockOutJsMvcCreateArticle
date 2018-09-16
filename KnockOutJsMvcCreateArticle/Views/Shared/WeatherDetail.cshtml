@@ -1,0 +1,43 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Weather
+
+@using KnockOutJsMvcCreateArticle.Models
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Weather";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div id="_indexPartialLocation">
+                <div class="panel panel-success shadow">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Londitions</h2>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("~/Views/Weather/_Location.cshtml", Model.location)
+                    </div>
+                </div>
+            </div>
+            </div>
+        <div class="col-md-6">
+            <div id="_indexPartialCurrentCondition">
+                <div class="panel panel-success shadow">
+                    <div class="panel-heading">
+                        <h2 class="panel-title">Current Conditions</h2>
+                    </div>
+                    <div class="panel-body">
+                        @Html.Partial("~/Views/Weather/_CurrentCondition.cshtml", Model.current)
+                    </div>
+                </div>
+
+            </div>
+        </div>  
+        </div>
+</div>
+@section Scripts {
+
+    <script type="text/javascript"
+            src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+
+}

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<Products>
+  <Product>
+    <ProductId>1</ProductId>
+    <ProductName>Generic Mouse</ProductName>
+    <ProductCost>30.00</ProductCost>
+  </Product>
+  <Product>
+    <ProductId>2</ProductId>
+    <ProductName>Generic Keyboard</ProductName>
+    <ProductCost>20.00</ProductCost>
+  </Product>
+  <Product>
+    <ProductId>3</ProductId>
+    <ProductName>Generic Hard Drive</ProductName>
+    <ProductCost>100.00</ProductCost>
+  </Product>
+</Products>

@@ -1,0 +1,180 @@
+﻿@{
+    ViewBag.Title = "NestedVM";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!--1st ViewModel-->
+<div id="xx">
+    <div class="col-md-5">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">IF Binding</h2>
+            </div>
+            <div class="panel-body">
+                <ul data-bind="foreach: products">
+                    <li>
+                        Name: <b data-bind="text: name"></b>
+                        <div data-bind="if: pricing > 50">
+                            Price: <b data-bind="text: pricing"></b>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--2nd ViewModel-->
+<div id="yy">
+    <div class="col-md-5">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h2 class="panel-title">IFNot Binding</h2>
+            </div>
+            <div class="panel-body">
+                <ul data-bind="foreach: products">
+                    <li>
+                        Name: <b data-bind="text: name"></b>
+                        <div data-bind="ifnot: pricing > 50">
+                            Price: <b data-bind="text: pricing"></b>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--3rd ViewModel-->
+<div id="zz">
+    <div class="col-md-5">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <h2 class="panel-title">IF Binding-Partial View</h2>
+            </div>
+            <div class="panel-body">
+               @Html.Partial("_iFBinding")
+            </div>
+        </div>
+    </div>
+</div>
+<!--4th ViewModel-->
+<div id="inputif">
+    <div class="col-md-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Different Model</h2>
+            </div>
+            <div class="panel-body">
+                <ul data-bind="foreach: products">
+                    <li>
+                        Products: <b data-bind="text: name"></b>
+
+                        Cost: <b data-bind="text: pricing.listprice"></b>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!--5th ViewModel-->
+
+<div id="5th">
+    <div class="col-md-10">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title">Inout / Output Model</h2>
+            </div>
+            <div class="panel-body">
+                @Html.Partial("_ProductView")
+            </div>
+        </div>
+    </div>
+</div>
+<!--6th ViewModel-->
+<div id="6th">
+    <div data-bind="event: { mouseover: showAbout }">
+        Mouse over to view the information about John.
+    </div>
+    <div data-bind="visible: aboutEnabled">
+
+        <div class="col-md-10">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title">Mouseover</h2>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("_ProductView")
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- 1st View Model-->
+<script type="text/javascript">
+    function ifViewModel() {
+        var self = this;
+        self.products = ko.observableArray([{ name: 'Coke', pricing: '100.00' },
+        { name: 'pepsi', pricing:'10.00' }]);
+    }
+    ko.applyBindings(new ifViewModel(), $("#xx")[0]);
+</script>
+
+<!-- 2nd View Model-->
+
+<script type="text/javascript">
+    function ifnotViewModel() {
+        var self = this;
+        self.products = ko.observableArray([{ name: 'Coke', pricing: '100.00' },
+        { name: 'pepsi', pricing: '10.00' }]);
+    }
+    ko.applyBindings(new ifnotViewModel(), $("#yy")[0]);
+</script>
+<!-- 3rd View Model-->
+<script type="text/javascript">
+    function ifnotListpriceViewModel() {
+        var self = this;
+        self.products = ko.observableArray([{ name: 'Coke', pricing: { listprice: '102.00' } } ,
+        { name: 'pepsi', pricing: { listprice: '40.00' } }]);
+    }
+    ko.applyBindings(new ifnotListpriceViewModel(), $("#zz")[0]);
+</script>
+<!-- 4th View Model-->
+<script type="text/javascript">
+    function inputifViewModel() {
+        var self = this;
+        self.products = ko.observableArray([{ name: 'Tathagat', pricing: { listprice: '102.00' } },
+        { name: 'dwivedi', pricing: { listprice: '10.00' } }]);
+    }
+    ko.applyBindings(new inputifViewModel(), $("#inputif")[0]);
+</script>
+<!-- 5th View Model-->
+<script type="text/javascript">
+    function displayViewModel() {
+        var self = this;
+        self.product = ko.observable('Coke');
+        self.cost = ko.observable('12.34');
+    }
+    ko.applyBindings(new displayViewModel(), $("#5th")[0]);
+</script>
+
+
+<!--6th ViewModel-->
+<script>
+var person = {
+};
+var PersonViewModel = function() {
+var self = this;
+self.aboutEnabled = ko.observable(false);
+self.showAbout = function() {
+self.aboutEnabled(true);
+};
+self.hideAbout = function() {
+self.aboutEnabled(false);
+}
+};
+ko.applyBindings(new PersonViewModel(), $("#6th")[0]);
+</script>

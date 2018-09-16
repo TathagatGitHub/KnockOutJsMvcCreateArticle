@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "WebAPIIndex";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>WebAPIIndex</h2>
+
+<div style="max-width:2500px">
+    <table cellpadding="0" cellspacing="0" border="0" class="display shadow" id="results-list">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Isbn</th>
+                <th>Synopsis</th>
+                <th>Description</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var oTable = $('#results-list').dataTable({
+            "bFilter": true,
+            "bProcessing": true,
+            "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Ten", "All"]],
+            "sAjaxDataProp": "",
+            "aoColumns": [
+            { "mData": "Id" },
+            { "mData": "AuthorId" },
+            { "mData": "Title" },
+            { "mData": "Isbn" },
+            { "mData": "Synopsis" },
+            { "mData": "Description" },
+            { "mData": "ImageUrl" }
+            ],
+            "sAjaxSource": "/api/bookapi/",
+            "bInfo": false
+        });
+    });
+</script>

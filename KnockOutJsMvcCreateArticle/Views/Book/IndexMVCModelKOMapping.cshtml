@@ -1,0 +1,46 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.BookAuthorViewModel
+@using KnockOutJsMvcCreateArticle.Models
+@using Newtonsoft.Json;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    
+   
+    
+    <div id="_indexPartialAuthor">
+          <div class="panel panel-success shadow">
+       <div class="panel-heading">
+           <h2 class="panel-title"># of Books @Model.Authors.Count</h2>
+       </div>
+       <div class="panel-body">
+    
+        @Html.Partial("~/Views/Author/_IndexMVCModelKOMapping.cshtml", Model.Authors)
+        
+    </div>
+            </div>
+        
+    </div>
+   
+      
+        <div id="_indexPartialAuthor">
+            <div class="panel panel-success shadow">
+                <div class="panel-heading">
+                    <h2 class="panel-title"># of Books @Model.Books.Count</h2>
+                </div>
+                <div class="panel-body">
+                    @Html.Partial("~/Views/Book/_IndexModelKOMapping.cshtml", Model.Books)
+
+                </div>
+            </div>
+        </div>
+  
+    
+</div>
+    @section Scripts {
+
+        <script type="text/javascript"
+                src="@Url.Content("~/scripts/jquery.unobtrusive-ajax.js")"></script>
+
+    }

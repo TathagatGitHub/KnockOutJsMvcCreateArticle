@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Article Register";
+}
+<script src="~/Scripts/ViewModel/ArticleRegistrationVM.js"></script>
+
+<div class="page-header">
+    <h2 class="text-center">Article Registration</h2>
+</div>
+
+
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title">Create new article</h2>
+            </div>
+            <div class="panel-body" data-bind="with: addArticleViewModel">
+                @Html.Partial("_CreateArticle")
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h2 class="panel-title">Articles</h2>
+            </div>
+            <div class="panel-body" data-bind="with: articleListViewModel">
+                @Html.Partial("_ListArticle")
+            </div>
+        </div>
+    </div>
+    <div data-bind="event: { mouseover: enableAbout, mouseout: disableAbout  }">
+        Mouse over to view the details.
+    </div>
+    <div class="col-md-3" data-bind="visible:showdetails">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title">Details</h2>
+            </div>
+            <div class="panel-body" data-bind="with: articleListViewModel">
+                @Html.Partial("_DetailArticle")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

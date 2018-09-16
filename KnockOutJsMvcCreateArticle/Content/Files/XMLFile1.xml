@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<breakfast_menu>
+ <food>
+   <name>Biriyani</name>
+  <price>$5.95</price>
+   <description>Rice with chicken</description>
+     <calories>650</calories>
+  </food>
+    <food>
+        <name>Juice</name>
+       <price>$1.95</price>
+       <description>Fruit juices like mango, banana, apple</description>
+        <calories>200</calories>
+
+  </food>
+
+</breakfast_menu>

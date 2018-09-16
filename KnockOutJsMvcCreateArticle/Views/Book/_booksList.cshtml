@@ -1,0 +1,29 @@
+﻿<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="~/Scripts/ViewModel/vbBookList.js"></script>
+<table class="table table-bordered table-striped table-condensed">
+    <thead>
+
+        <tr>
+            
+            <th>AuthorId</th>
+            
+            <th>ISBN</th>
+            <th>Description</th>
+            <th>Synopsis</th>
+            <th>ImageUrl</th>
+        </tr>
+    </thead>
+
+    <tbody data-bind="foreach: books">
+        <tr>
+            
+            <td data-bind="text: AuthorId"></td>
+            
+            <td data-bind="text: Isbn"></td>
+            <td data-bind="text: Description"></td>
+            <td data-bind="text: Synopsis"></td>
+            <td data-bind="text: ImageUrl "></td>
+        </tr>
+    </tbody>
+</table>

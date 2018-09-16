@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "IndexDatatable";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Jquery Datatable</h2>
+<html>
+<head>
+    <title>DataTable using Jquery</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/s/dt/dt-1.10.10/datatables.min.css" />  
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/s/dt/dt-1.10.10/datatables.min.js"></script>
+
+</head>
+<body>
+    <div id="container">
+        <div id="demo">
+            <h2>Index</h2>
+            <table id="myDataTable" class="display">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Author Id </th>
+                        <th>Title</th>
+                        <th>ISBN</th>
+                        <th>Synopsis</th>
+                        <th>Description</th>
+                        <th>Image URL</th>
+
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#myDataTable').dataTable({
+            "bServerSide": true,
+            "sAjaxSource": "Book/AjaxHandler",
+            "bProcessing": true,
+            "aoColumns": [
+                            {
+                                "sName": "Id",
+                                "bSearchable": false,
+                                "bSortable": false,
+                                "fnRender": function (oObj) {
+                                    return '<a href=\"Details/' +
+                                    oObj.aData[0] + '\">View</a>';
+                                }
+                            },
+                            { "sName": "AuthorId" },
+                            { "sName": "Title" },
+                            { "sName": "Isbn" },
+                            { "sName": "Synopsis" },
+                            { "sName": "Description" },
+                            { "sName": "ImageUrl" }
+            ]
+        });
+    });
+</script>

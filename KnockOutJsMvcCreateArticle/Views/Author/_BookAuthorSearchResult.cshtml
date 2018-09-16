@@ -1,0 +1,35 @@
+﻿<label class="text-info">Book Isbn:</label>
+<input type="text" class="form-inline" width=10 value="isbn" id="txtbookIsbnID" />
+<button class="btn-success btn-sm" onclick="searchBooksAndAuthor()">Search</button>
+<label class="text-info"># of Books:</label>
+<label class="text-danger" data-bind="text:bookauthorlist().length">Only god knows</label>
+
+<table class="table table-bordered table-striped table-condensed">
+
+    <thead>
+
+        <tr>
+            <th>Book Isbn</th>
+            <th>Title</th>
+            <th>Author Name</th>
+            <th>Description</th>
+            <th>Author ID</th>
+            <th>Book Image</th>
+        </tr>
+    </thead>
+
+    <tbody data-bind="foreach: bookauthorlist">
+        <tr>
+            <td data-bind="text:BookIsbn"></td>
+            <td data-bind="text:BookTitle"></td>
+            <td data-bind="text:AuthorName"></td>
+            <td data-bind="text:BookDescription"></td>
+            <td data-bind="text:AuthorID"></td>
+            <td data-bind="text:BookImage"></td>
+
+        </tr>
+    </tbody>
+</table>
+
+
+

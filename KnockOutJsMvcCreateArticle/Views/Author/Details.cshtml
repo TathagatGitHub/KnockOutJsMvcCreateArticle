@@ -1,0 +1,52 @@
+﻿@model KnockOutJsMvcCreateArticle.Models.Author
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+
+    <fieldset>
+        <legend>Author</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="display-field">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+
+        <div class="display-field">
+            @Html.DisplayFor(model => model.FirstName, new { htmlAttributes = new { data_bind = "value: author.firstName" } })
+        </div>
+
+        <div class="display-field">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.LastName, new { htmlAttributes = new {data_bind = "value: author.lastName" } })
+        </div>
+
+        <div class="display-field">
+            @Html.LabelFor(model => model.Biography)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Biography, new { htmlAttributes = new {  data_bind = "value: author.biography" } })
+        </div>
+
+        
+    </fieldset>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval", "/Scripts/ViewModels/AuthorViewModel.js")
+    <script>
+    var viewModel = new ViewModel(@Html.HtmlConvertToJson(Model)); @* This where conversion needed from model to JavaScript String *@
+        ko.applyBindings(viewModel);
+    </script>
+}
