@@ -36,7 +36,7 @@ namespace KnockOutJsMvcCreateArticle.Migrations
                 Roles.CreateRole("admin");
             if (!Roles.RoleExists("view"))
                 Roles.CreateRole("view");
-
+            // This is needed for WebSecurity classes
             WebSecurity.InitializeDatabaseConnection("ArticleDBContexConnection", "UserProfile", "UserId", "UserName", true);
             if (!WebSecurity.UserExists("admin_user"))
                 WebSecurity.CreateUserAndAccount("admin_user", "admin123");
