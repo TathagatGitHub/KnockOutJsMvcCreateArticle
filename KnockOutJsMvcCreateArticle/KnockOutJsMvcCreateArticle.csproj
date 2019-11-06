@@ -206,6 +206,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AuthorProfile.cs" />
+    <Compile Include="Models\JQueryDataTableParams.cs" />
     <Compile Include="Models\Property.cs" />
     <Compile Include="Models\viewModelBookAuthor.cs" />
     <Compile Include="MyRoleProvider.cs" />

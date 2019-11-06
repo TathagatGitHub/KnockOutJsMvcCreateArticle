@@ -17,7 +17,8 @@ namespace KnockOutJsMvcCreateArticle.Controllers
         {
             
             List<Book> allBooks = db.BookDB.ToList();
-            return View("IndexDatatableV2", allBooks);
+            //return View("IndexDatatableV2", allBooks);
+            return View("IndexDatatable", allBooks);
         }
         public ActionResult AuhorBookList()
         {
@@ -188,6 +189,60 @@ namespace KnockOutJsMvcCreateArticle.Controllers
             {
                 return View();
             }
+        }
+
+
+
+        // [System.Web.Http.HttpPost]
+        public ActionResult GetBookspost(JQueryDataTableParams param)
+        {
+            JsonResult JsonResult = new JsonResult();
+            try
+            {
+                // Initialization.  
+                // var search = Request.Form.GetValues("search[value]")[0];
+                var draw = 0;//= Request.Form.GetValues("draw").FirstOrDefault();
+                var start = 0;// =  Request.Form.GetValues("start").FirstOrDefault();
+
+
+
+                int pageSize = 1;
+                int skip = start != null ? Convert.ToInt32(start) : 0;
+                int recordsTotal = 1;
+
+                int recFilter = db.BookDB.Count();
+                var v = db.BookDB.ToList();
+
+                // Apply pagination.     
+               // var data = v.Skip(skip).Take(pageSize).ToList();
+
+                var displayedMembers =v
+              .Skip(0)
+              .Take(10);
+              //  var result = from a in v
+                //             select new[] { a.Id, a.AuthorId, a.Title, a.Isbn, a.Synopsis, a.Description, a.ImageUrl };
+
+                JsonResult= Json(new
+                {
+                    sEcho = param.sEcho,
+                    iTotalRecords = recFilter,
+                    iTotalDisplayRecords = recFilter,
+                    aaData = displayedMembers
+                },
+                   JsonRequestBehavior.AllowGet);
+
+
+              //  JsonResult = this.Json(new { draw = draw, recordsFiltered = recFilter, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
+            }
+
+            catch (Exception ex)
+            {
+                // Info     
+                Console.Write(ex);
+            }
+            // Return info.     
+            return JsonResult;
+
         }
     }
 }

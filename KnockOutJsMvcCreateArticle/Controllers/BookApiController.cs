@@ -11,6 +11,7 @@ using System.Web.Http;
 using KnockOutJsMvcCreateArticle.Models;
 using System.Collections.Specialized;
 using System.Net.Http.Formatting;
+using System.Web.Mvc;
 
 namespace KnockOutJsMvcCreateArticle.Controllers
 {
@@ -27,6 +28,8 @@ namespace KnockOutJsMvcCreateArticle.Controllers
             // return db.ArticleDB.AsEnumerable();
             return db.BookDB;
         }
+
+    
         [Queryable]
         public IQueryable<Book> GetBooksSearch()
         {

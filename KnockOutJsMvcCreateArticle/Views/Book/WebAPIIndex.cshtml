@@ -27,20 +27,41 @@
     $(document).ready(function () {
         var oTable = $('#results-list').dataTable({
             "bFilter": true,
+            "language":  
+                {  
+                    "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"  
+                },
             "bProcessing": true,
+            "serverSide": true,
+             "sAjaxSource":'@Url.Action("GetBookspost","Book")',
             "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Ten", "All"]],
-            "sAjaxDataProp": "",
+            //"sAjaxDataProp": "",
             "aoColumns": [
             { "mData": "Id" },
             { "mData": "AuthorId" },
             { "mData": "Title" },
             { "mData": "Isbn" },
-            { "mData": "Synopsis" },
+            { "mData": "Synopsis" },    
             { "mData": "Description" },
-            { "mData": "ImageUrl" }
-            ],
-            "sAjaxSource": "/api/bookapi/GetBooks",
-            "bInfo": false
+                { "mData": "ImageUrl" }
+                //,
+            @*{  
+                 "sName": "Id",  
+                 "bSearchable": false,  
+                 "bSortable": false,  
+                 'mRender': function (data) {  
+                   return '<a href="@Url.Action("Edit", "Member")/' + data + '" class="btn btn-warning btn-xs" role="button">Edit</a>' + '&nbsp;' +  
+                       '<button onclick="confirmDelete(' + data + ');" class="btn btn-danger btn-xs">delete</button>';  
+                 }  
+               },*@
+            ]
+          //  "sAjaxSource": "/book/GetBooks/GetBookspost",
+            @*"sAjaxSource": '@Url.Action("GetBookspost","Book")',*@
+
+           
+            
+
+            //"bInfo": false
         });
     });
 </script>
