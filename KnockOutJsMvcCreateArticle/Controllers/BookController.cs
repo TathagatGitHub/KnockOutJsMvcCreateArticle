@@ -206,9 +206,9 @@ namespace KnockOutJsMvcCreateArticle.Controllers
 
 
 
-                int pageSize = 1;
-                int skip = start != null ? Convert.ToInt32(start) : 0;
-                int recordsTotal = 1;
+                //int pageSize = 1;
+                //int skip = start != null ? Convert.ToInt32(start) : 0;
+                //int recordsTotal = 1;
 
                 int recFilter = db.BookDB.Count();
                 var v = db.BookDB.ToList();
@@ -217,8 +217,8 @@ namespace KnockOutJsMvcCreateArticle.Controllers
                // var data = v.Skip(skip).Take(pageSize).ToList();
 
                 var displayedMembers =v
-              .Skip(0)
-              .Take(10);
+              .Skip(param.iDisplayStart)
+              .Take(param.iDisplayLength);
               //  var result = from a in v
                 //             select new[] { a.Id, a.AuthorId, a.Title, a.Isbn, a.Synopsis, a.Description, a.ImageUrl };
 
