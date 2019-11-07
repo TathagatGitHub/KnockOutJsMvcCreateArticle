@@ -196,33 +196,19 @@ namespace KnockOutJsMvcCreateArticle.Controllers
         // [System.Web.Http.HttpPost]
         public ActionResult GetBookspost(JQueryDataTableParams param)
         {
+            int i = 1;
             JsonResult JsonResult = new JsonResult();
             try
             {
-                // Initialization.  
-                // var search = Request.Form.GetValues("search[value]")[0];
-                var draw = 0;//= Request.Form.GetValues("draw").FirstOrDefault();
-                var start = 0;// =  Request.Form.GetValues("start").FirstOrDefault();
-
-
-
-                //int pageSize = 1;
-                //int skip = start != null ? Convert.ToInt32(start) : 0;
-                //int recordsTotal = 1;
-
                 int recFilter = db.BookDB.Count();
-                var v = db.BookDB.ToList();
+              
+               //var displayedMembers = db.BookDB.ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
+                var displayedMembers = (from s in db.BookDB
+                                       where s.Isbn == "dd"
+                                       select s).ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
 
-                // Apply pagination.     
-               // var data = v.Skip(skip).Take(pageSize).ToList();
 
-                var displayedMembers =v
-              .Skip(param.iDisplayStart)
-              .Take(param.iDisplayLength);
-              //  var result = from a in v
-                //             select new[] { a.Id, a.AuthorId, a.Title, a.Isbn, a.Synopsis, a.Description, a.ImageUrl };
-
-                JsonResult= Json(new
+                JsonResult = Json(new
                 {
                     sEcho = param.sEcho,
                     iTotalRecords = recFilter,
@@ -231,8 +217,6 @@ namespace KnockOutJsMvcCreateArticle.Controllers
                 },
                    JsonRequestBehavior.AllowGet);
 
-
-              //  JsonResult = this.Json(new { draw = draw, recordsFiltered = recFilter, recordsTotal = recordsTotal, data = data }, JsonRequestBehavior.AllowGet);
             }
 
             catch (Exception ex)
