@@ -46,20 +46,21 @@
             "bProcessing": true,
             "aoColumns": [
                             {
-                                "sName": "Id",
+                                "mData": "Id",
                                 "bSearchable": false,
                                 "bSortable": false,
                                 "fnRender": function (oObj) {
                                     return '<a href=\"Details/' +
-                                    oObj.aData[0] + '\">View</a>';
+                                    oObj.aData[0]+ '\">View</a>';
                                 }
                             },
-                            { "sName": "AuthorId" },
-                            { "sName": "Title" },
-                            { "sName": "Isbn" },
-                            { "sName": "Synopsis" },
-                            { "sName": "Description" },
-                            { "sName": "ImageUrl" }
+                          
+            { "mData": "AuthorId" },
+            { "mData": "Title" },
+            { "mData": "Isbn" },
+            { "mData": "Synopsis" },    
+            { "mData": "Description" },
+                { "mData": "ImageUrl" }
             ]
         });
     });

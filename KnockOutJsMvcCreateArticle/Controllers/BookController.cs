@@ -31,10 +31,14 @@ namespace KnockOutJsMvcCreateArticle.Controllers
         }
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
-            var allBooks = db.BookDB.ToList();
+           // var allBooks = db.BookDB.ToList();
 
-           // var result = from c in db.BookDB
-             //           select new [] { c.Id, c.AuthorId, c.Isbn,c.Description,c.Synopsis, c.ImageUrl };
+            var allBooks = (from s in db.BookDB
+                                    where s.Isbn == "dd"
+                                    select s).ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
+
+            // var result = from c in db.BookDB
+            //           select new [] { c.Id, c.AuthorId, c.Isbn,c.Description,c.Synopsis, c.ImageUrl };
 
             return Json(new
             {
