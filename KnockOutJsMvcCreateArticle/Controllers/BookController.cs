@@ -205,21 +205,37 @@ namespace KnockOutJsMvcCreateArticle.Controllers
             try
             {
                 int recFilter = db.BookDB.Count();
-              
-               //var displayedMembers = db.BookDB.ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
-                var displayedMembers = (from s in db.BookDB
-                                       where s.Isbn == "dd"
-                                       select s).ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
 
-
-                JsonResult = Json(new
+                //var displayedMembers = db.BookDB.ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
+                if (param.iDisplayLength!=-1)
+                { var displayedMembers = (from s in db.BookDB
+                                          where s.Isbn == "Isbn12"
+                                          select s).ToList().Skip(param.iDisplayStart).Take(param.iDisplayLength);
+                    JsonResult = Json(new
+                    {
+                        sEcho = param.sEcho,
+                        iTotalRecords = recFilter,
+                        iTotalDisplayRecords = recFilter,
+                        aaData = displayedMembers
+                    },
+                JsonRequestBehavior.AllowGet);
+                }
+                else
                 {
-                    sEcho = param.sEcho,
-                    iTotalRecords = recFilter,
-                    iTotalDisplayRecords = recFilter,
-                    aaData = displayedMembers
-                },
-                   JsonRequestBehavior.AllowGet);
+                    var displayedMembers = (from s in db.BookDB
+                                            where s.Isbn == "Isbn12"
+                                            select s).ToList();
+                    JsonResult = Json(new
+                    {
+                        sEcho = param.sEcho,
+                        iTotalRecords = recFilter,
+                        iTotalDisplayRecords = recFilter,
+                        aaData = displayedMembers
+                    },
+                JsonRequestBehavior.AllowGet);
+
+                }
+             
 
             }
 

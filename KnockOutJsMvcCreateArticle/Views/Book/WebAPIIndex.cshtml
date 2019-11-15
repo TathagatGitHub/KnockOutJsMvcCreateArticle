@@ -34,34 +34,26 @@
             "bProcessing": true,
             "serverSide": true,
              "sAjaxSource":'@Url.Action("GetBookspost","Book")',
-            "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Ten", "All"]],
+            "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Hundred", "All"]],
             //"sAjaxDataProp": "",
             "aoColumns": [
-            { "mData": "Id" },
-            { "mData": "AuthorId" },
-            { "mData": "Title" },
-            { "mData": "Isbn" },
-            { "mData": "Synopsis" },    
-            { "mData": "Description" },
-                { "mData": "ImageUrl" }
-                //,
-            @*{  
-                 "sName": "Id",  
-                 "bSearchable": false,  
-                 "bSortable": false,  
-                 'mRender': function (data) {  
-                   return '<a href="@Url.Action("Edit", "Member")/' + data + '" class="btn btn-warning btn-xs" role="button">Edit</a>' + '&nbsp;' +  
-                       '<button onclick="confirmDelete(' + data + ');" class="btn btn-danger btn-xs">delete</button>';  
-                 }  
-               },*@
+                {  "mData": "Id",
+                                    "bSearchable": false,
+                                    "bSortable": false,
+                                    "render": function (Data) {
+                                        return '<a href=\"Details/' +
+                                            Data + '\">View</a>';
+
+                   } },
+                { "mData": "AuthorId" },
+                { "mData": "Title" },
+                { "mData": "Isbn" },
+                { "mData": "Synopsis" },    
+                { "mData": "Description" },
+                    { "mData": "ImageUrl" }
+                        
             ]
-          //  "sAjaxSource": "/book/GetBooks/GetBookspost",
-            @*"sAjaxSource": '@Url.Action("GetBookspost","Book")',*@
-
-           
-            
-
-            //"bInfo": false
+     
         });
     });
 </script>
