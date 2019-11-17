@@ -1,6 +1,11 @@
 ﻿
 <script src="~/Scripts/knockout-2.2.0.js"></script>
 <script src="~/Scripts/Knockout.mapping-2.4.1.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.20/b-1.6.1/sl-1.3.1/datatables.min.css" />
+<link rel="stylesheet" type="text/css" href="Editor-1.9.2/css/editor.dataTables.css">
+
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/jqc-1.12.4/dt-1.10.20/b-1.6.1/sl-1.3.1/datatables.min.js"></script>
+<script type="text/javascript" src="Editor-1.9.2/js/dataTables.editor.js"></script>
 <h3>KnockOut Examples:</h3>
 
 <div class="control-group">
@@ -40,7 +45,7 @@
         self.knowJS = ko.observable(false);
         self.favLib = ko.observable(' ');
         self.removeFriend = function () {
-               self.friends.remove(self);
+            self.friends.remove(self);
         }
     }
 
@@ -58,7 +63,7 @@
         self.addFriend = function () {
             self.friends.push(new Friend('new'));
         }
-        
+
     }
 
     // Activates knockout.js

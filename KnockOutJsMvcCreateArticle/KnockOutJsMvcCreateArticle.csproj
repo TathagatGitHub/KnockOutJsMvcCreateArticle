@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataTables-Editor-Server">
+      <HintPath>..\packages\Editor\DataTables-Editor-Server.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -254,6 +257,18 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom.css" />
+    <Content Include="Content\editor.bootstrap.css" />
+    <Content Include="Content\editor.bootstrap.min.css" />
+    <Content Include="Content\editor.bootstrap4.css" />
+    <Content Include="Content\editor.bootstrap4.min.css" />
+    <Content Include="Content\editor.dataTables.css" />
+    <Content Include="Content\editor.dataTables.min.css" />
+    <Content Include="Content\editor.foundation.css" />
+    <Content Include="Content\editor.foundation.min.css" />
+    <Content Include="Content\editor.jqueryui.css" />
+    <Content Include="Content\editor.jqueryui.min.css" />
+    <Content Include="Content\editor.semanticui.css" />
+    <Content Include="Content\editor.semanticui.min.css" />
     <Content Include="Content\Files\ProfileXSLT.xslt" />
     <Content Include="Content\Files\XMLFile1.xml" />
     <Content Include="Content\Files\XSLTFile1.xslt" />
@@ -326,6 +341,18 @@
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\dataTables.editor.js" />
+    <Content Include="Scripts\dataTables.editor.min.js" />
+    <Content Include="Scripts\editor.bootstrap.js" />
+    <Content Include="Scripts\editor.bootstrap.min.js" />
+    <Content Include="Scripts\editor.bootstrap4.js" />
+    <Content Include="Scripts\editor.bootstrap4.min.js" />
+    <Content Include="Scripts\editor.foundation.js" />
+    <Content Include="Scripts\editor.foundation.min.js" />
+    <Content Include="Scripts\editor.jqueryui.js" />
+    <Content Include="Scripts\editor.jqueryui.min.js" />
+    <Content Include="Scripts\editor.semanticui.js" />
+    <Content Include="Scripts\editor.semanticui.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery-1.9.1.min.map" />
@@ -344,6 +371,7 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\Knockout.mapping-2.4.1.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\PageLoadMore.js" />
     <Content Include="Scripts\ViewModel\AuthorViewModel.js" />
     <Content Include="Scripts\ViewModel\mapping.js" />
     <Content Include="Scripts\ViewModel\ArticleListMapping.js" />

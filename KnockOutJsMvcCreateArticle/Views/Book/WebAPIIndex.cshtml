@@ -3,6 +3,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
+<script src="~/Scripts/dataTables.editor.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
+<link rel="stylesheet" href="~/Content/editor.dataTables.min.css">
+
+
+
+
+
+
 <h2>WebAPIIndex</h2>
 
 <div style="max-width:2500px">
@@ -25,15 +41,39 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+
+        var editor = new $.fn.dataTable.Editor( {
+    @*ajax:  '@Url.Action("GetBookspost","Book")',*@
+    ajax:  '/Book/GetBookspost',
+    table: '#results-list',
+    fields: [
+        { label: 'Id', name: 'Id' },
+        { label: 'AuthorId', name: 'AuthorId' },
+        { label: 'Title', name: 'Title' },
+        { label: 'Isbn', name: 'Isbn' },
+        { label: 'Synopsis', name: 'Synopsis' },
+        { label: 'Description', name: 'Description' },
+        { label: 'ImageUrl', name: 'ImageUrl' }
+
+        // etc
+    ]
+} );
+
+
+
         var oTable = $('#results-list').dataTable({
-            "bFilter": true,
-            "language":  
-                {  
-                    "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"  
+            //"bFilter": true,
+             dom: "Bfrtip",
+           //  dom: 'rti<"bottom"f><"clear">',
+            "language":
+                {
+                    "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"
                 },
             "bProcessing": true,
             "serverSide": true,
-             "sAjaxSource":'@Url.Action("GetBookspost","Book")',
+            @*"sAjaxSource": '@Url.Action("GetBookspost","Book")',*@
+            "sAjaxSource":  '/Book/GetBookspost',
             "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Hundred", "All"]],
             //"sAjaxDataProp": "",
             "aoColumns": [
@@ -48,12 +88,17 @@
                 { "mData": "AuthorId" },
                 { "mData": "Title" },
                 { "mData": "Isbn" },
-                { "mData": "Synopsis" },    
+                { "mData": "Synopsis" },
                 { "mData": "Description" },
                     { "mData": "ImageUrl" }
-                        
+
+            ],
+            select: true,
+    buttons: [
+        { extend: 'create', editor: editor },
+        { extend: 'edit',   editor: editor },
+        { extend: 'remove', editor: editor }
             ]
-     
         });
     });
 </script>
