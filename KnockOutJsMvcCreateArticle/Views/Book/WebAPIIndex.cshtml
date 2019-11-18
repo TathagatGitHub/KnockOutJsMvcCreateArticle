@@ -39,14 +39,15 @@
 </div>
 
 <script type="text/javascript">
-
+    var editor;
     $(document).ready(function () {
 
 
-        var editor = new $.fn.dataTable.Editor( {
+        editor = new $.fn.dataTable.Editor( {
     @*ajax:  '@Url.Action("GetBookspost","Book")',*@
     ajax:  '/Book/GetBookspost',
-    table: '#results-list',
+            table: '#results-list',
+    idSrc:  'Id',
     fields: [
         { label: 'Id', name: 'Id' },
         { label: 'AuthorId', name: 'AuthorId' },
@@ -61,8 +62,12 @@
 } );
 
 
+         // Activate the bubble editor on click of a table cell
+    $('#results-list').on( 'click', 'tbody td:not(:first-child)', function (e) {
+        editor.bubble( this );
+    });
 
-        var oTable = $('#results-list').dataTable({
+        $('#results-list').dataTable({
             //"bFilter": true,
              dom: "Bfrtip",
            //  dom: 'rti<"bottom"f><"clear">',
@@ -84,9 +89,17 @@
                                         return '<a href=\"Details/' +
                                             Data + '\">View</a>';
 
-                   } },
-                { "mData": "AuthorId" },
-                { "mData": "Title" },
+                    }
+                },
+
+                { data: null, render: function ( data, type, row ) {
+                // Combine the first and last names into a single table field
+                return data.AuthorId+' '+data.Title;
+                }
+                },
+
+                //{ "mData": "AuthorId" },
+                //{ "mData": "Title" },
                 { "mData": "Isbn" },
                 { "mData": "Synopsis" },
                 { "mData": "Description" },
