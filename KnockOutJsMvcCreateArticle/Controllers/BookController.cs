@@ -200,7 +200,16 @@ namespace KnockOutJsMvcCreateArticle.Controllers
         // [System.Web.Http.HttpPost]
         public ActionResult GetBookspost(JQueryDataTableParams param)
         {
-            int i = 1;
+           // int i = 1;
+           if (Request.Form["action"] == "edit")
+            {
+                return Json(new
+                {
+                    success = true,
+                    responseText = 1000,
+                    responseCode = "Success"
+                });
+            }
             JsonResult JsonResult = new JsonResult();
             try
             {

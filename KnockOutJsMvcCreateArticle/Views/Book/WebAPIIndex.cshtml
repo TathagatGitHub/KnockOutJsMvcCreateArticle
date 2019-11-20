@@ -16,9 +16,6 @@
 
 
 
-
-
-
 <h2>WebAPIIndex</h2>
 
 <div style="max-width:2500px">
@@ -82,6 +79,18 @@
             "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Hundred", "All"]],
             //"sAjaxDataProp": "",
             "aoColumns": [
+
+
+                 {
+                mData: null, // to show the checkbox
+                defaultContent: '',
+                className: 'select-checkbox',
+                orderable: false,
+                searchable: false
+            },
+
+
+
                 {  "mData": "Id",
                                     "bSearchable": false,
                                     "bSortable": false,
@@ -106,7 +115,13 @@
                     { "mData": "ImageUrl" }
 
             ],
-            select: true,
+            //select: true,
+              select: {
+            style:    'os',
+            selector: 'td:first-child'
+        },
+
+
     buttons: [
         { extend: 'create', editor: editor },
         { extend: 'edit',   editor: editor },
