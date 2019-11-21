@@ -66,45 +66,49 @@
 
         $('#results-list').dataTable({
             //"bFilter": true,
-             dom: "Bfrtip",
-           //  dom: 'rti<"bottom"f><"clear">',
+            dom: "Bfrtip",
+            //  dom: 'rti<"bottom"f><"clear">',
             "language":
-                {
-                    "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"
-                },
+            {
+                "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"
+            },
             "bProcessing": true,
             "serverSide": true,
             @*"sAjaxSource": '@Url.Action("GetBookspost","Book")',*@
-            "sAjaxSource":  '/Book/GetBookspost',
+            "sAjaxSource": '/Book/GetBookspost',
             "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Hundred", "All"]],
+
+
             //"sAjaxDataProp": "",
             "aoColumns": [
 
 
-                 {
-                mData: null, // to show the checkbox
-                defaultContent: '',
-                className: 'select-checkbox',
-                orderable: false,
-                searchable: false
-            },
+                {
+                    mData: null, // to show the checkbox
+                    defaultContent: '',
+                    className: 'select-checkbox',
+                    orderable: false,
+                    searchable: false
+                },
 
 
 
-                {  "mData": "Id",
-                                    "bSearchable": false,
-                                    "bSortable": false,
-                                    "render": function (Data) {
-                                        return '<a href=\"Details/' +
-                                            Data + '\">View</a>';
+                {
+                    "mData": "Id",
+                    "bSearchable": false,
+                    "bSortable": false,
+                    "render": function (Data) {
+                        return '<a href=\"Details/' +
+                            Data + '\">View</a>';
 
                     }
                 },
 
-                { data: null, render: function ( data, type, row ) {
-                // Combine the first and last names into a single table field
-                return data.AuthorId+' '+data.Title;
-                }
+                {
+                    data: null, render: function (data, type, row) {
+                        // Combine the first and last names into a single table field
+                        return data.AuthorId + ' ' + data.Title;
+                    }
                 },
 
                 //{ "mData": "AuthorId" },
@@ -112,21 +116,47 @@
                 { "mData": "Isbn" },
                 { "mData": "Synopsis" },
                 { "mData": "Description" },
-                    { "mData": "ImageUrl" }
+                { "mData": "ImageUrl" }
 
             ],
             //select: true,
-              select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
+            select: {
+                style: 'os',
+                selector: 'td:first-child'
+            },
 
 
-    buttons: [
-        { extend: 'create', editor: editor },
-        { extend: 'edit',   editor: editor },
-        { extend: 'remove', editor: editor }
-            ]
-        });
+            buttons: [
+                { extend: 'create', editor: editor },
+                { extend: 'edit', editor: editor },
+                { extend: 'remove', editor: editor }
+            ],
+
+            initComplete: function () {
+                this.api().columns().every(function () {
+                    var column = this;
+                    $('#dataTables-example .head .head_hide').html('');
+
+                    var select = $('<select id="formfilter" class="filterdropdown"><option value="">' + $(column.header()).text() + '</option></select>')
+                        .appendTo($(column.header()).empty())
+                        .on('change', function () {
+                            var val = $.fn.dataTable.util.escapeRegex(
+                                $(this).val()
+                            );
+                            column
+                                .search(val ? '^' + val + '$' : '', true, false)
+                                .draw();
+                        });
+
+                    column.data().unique().sort().each(function (d, j) {
+                        select.append('<option value="' + d + '">' + d + '</option>')
+                    });
+                });
+
+            }
+        }
+        );
+
+
     });
 </script>
