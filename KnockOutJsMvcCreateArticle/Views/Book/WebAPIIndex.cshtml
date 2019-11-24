@@ -138,9 +138,15 @@
                 this.api().columns().every(function () {
                     var column = this;
                     $('#dataTables-example .head .head_hide').html('');
+               //     var selecttext = "";
+
+                    //column.data().unique().sort().each(function (d, j) {
+                    //    selecttext += '<option value="' + d + '">' + d + '</option>';
+                    //});
 
                     var select = $('<select id="formfilter" class="filterdropdown"><option value="">' + $(column.header()).text() + '</option></select>')
                         .appendTo($(column.header()).empty())
+                  //      .appendTo(selecttext)
                         .on('change', function () {
                             var val = $.fn.dataTable.util.escapeRegex(
                                 $(this).val()

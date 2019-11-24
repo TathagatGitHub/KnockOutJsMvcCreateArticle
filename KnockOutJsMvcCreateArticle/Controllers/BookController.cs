@@ -308,7 +308,7 @@ namespace KnockOutJsMvcCreateArticle.Controllers
             //Extract only current page
             //var displayedCompanies = filteredCompanies.Skip(iDisplayStart).Take(iDisplayLength);
             var result = (from s in filteredCompanies//db.BookDB
-                          where s.Title == "Title12"
+                        //  where s.Title == "Title12"
                                     select s).ToList().Skip(iDisplayStart).Take(iDisplayLength);
 
             //var result = from c in displayedCompanies
