@@ -42,7 +42,8 @@
 
         editor = new $.fn.dataTable.Editor( {
     @*ajax:  '@Url.Action("GetBookspost","Book")',*@
-    ajax:  '/Book/GetBookspost',
+    //ajax:  '/Book/GetBookspost',
+      ajax:  '/Book/DataProviderAction',
             table: '#results-list',
     idSrc:  'Id',
     fields: [
@@ -66,8 +67,8 @@
 
         $('#results-list').dataTable({
             //"bFilter": true,
-            dom: "Bfrtip",
-            //  dom: 'rti<"bottom"f><"clear">',
+          dom: "Bfltip",
+          //  dom: 'rti<"bottom"f><"clear">',
             "language":
             {
                 "processing": "<div class='overlay custom-loader-background'><i class='fa fa-cog fa-spin custom-loader-color'></i></div>"
@@ -75,7 +76,8 @@
             "bProcessing": true,
             "serverSide": true,
             @*"sAjaxSource": '@Url.Action("GetBookspost","Book")',*@
-            "sAjaxSource": '/Book/GetBookspost',
+           // "sAjaxSource": '/Book/GetBookspost',
+             "sAjaxSource":  '/Book/DataProviderAction',
             "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Hundred", "All"]],
 
 
