@@ -8,13 +8,12 @@
 <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script>
 <script src="~/Scripts/dataTables.editor.min.js"></script>
-<script src="~/Scripts/jquery.dataTables.columnFilter.js"></script>
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css">
 <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css">
 <link rel="stylesheet" href="~/Content/editor.dataTables.min.css">
-@*<link href="~/Content/CSS/custom.css" rel="stylesheet" />*@
-
+<link href="~/Content/CSS/datatablefiltercustom.css" rel="stylesheet" />
 <h2>WebAPIIndex</h2>
 
 <div style="max-width:2500px">
@@ -38,6 +37,13 @@
     var editor;
     $(document).ready(function () {
 
+          function cbDropdown(column) {
+    return $('<ul>', {
+      'class': 'cb-dropdown'
+    }).appendTo($('<div>', {
+      'class': 'cb-dropdown-wrap'
+    }).appendTo(column));
+        }
 
         editor = new $.fn.dataTable.Editor( {
     @*ajax:  '@Url.Action("GetBookspost","Book")',*@
@@ -75,9 +81,9 @@
             "bProcessing": true,
             "serverSide": true,
             @*"sAjaxSource": '@Url.Action("GetBookspost","Book")',*@
-            //"sAjaxSource": '/Book/GetBookspost',
+           // "sAjaxSource": '/Book/GetBookspost',
              "sAjaxSource":  '/Book/DataProviderAction',
-            "aLengthMenu": [[100, -1], ["Hundred", "All"]],
+            "aLengthMenu": [[500, -1], ["FiveHundred", "All"]],
 
 
             //"sAjaxDataProp": "",
@@ -96,7 +102,7 @@
 
                 {
                     "mData": "Id",
-                    "bSearchable": true,
+                    "bSearchable": false,
                     "bSortable": false,
                     "render": function (Data) {
                         return '<a href=\"Details/' +
@@ -132,79 +138,44 @@
                 { extend: 'edit', editor: editor },
                 { extend: 'remove', editor: editor }
             ],
-        //  initComplete: function () {
-        //    this.api().columns().every( function () {
-        //        var column = this;
-        //        var select = $('<select><option value=""></option></select>')
-        //            .appendTo( $(column.header()).empty() )
-        //            .on( 'change', function () {
-        //                var val = $.fn.dataTable.util.escapeRegex(
-        //                    $(this).val()
-        //                );
 
-        //                column
-        //                    .search( val ? '^'+val+'$' : '', true, false )
-        //                    .draw();
-        //            } );
-
-        //        column.data().unique().sort().each( function ( d, j ) {
-        //            select.append( '<option value="'+d+'">'+d+'</option>' )
-        //        } );
-        //    } );
-        //}
-              initComplete: function () {
-                this.api().columns().every(function () {
-                    var column = this;
-                   $('#dataTables-example .head .head_hide').html('');
-                     var select = $('<select id="formfilter" style="m-height: 80px;"><option value="All">' + $(column.header()).text() + '</option></select>')
-                        //var select = $('<select><option value=""></option></select>')
-                        .appendTo($(column.header()).empty())
-                        .on('change', function () {
-                            var val = $.fn.dataTable.util.escapeRegex(
-                                $(this).val()
-                            );
+                  initComplete: function () {
+                  this.api().columns().every(function() {
+        var column = this;
+        var ddmenu = cbDropdown($(column.header()))
+          .on('change', ':checkbox', function() {
+            var active;
+            var vals = $(':checked', ddmenu).map(function(index, element) {
+              active = true;
+              return $.fn.dataTable.util.escapeRegex($(element).val());
+            }).toArray().join('|');
                             column
-				//.search( this.value ).draw()
-                                .search(val ? '^' + val + '$' : '', true, false)
-                                .draw();
+              .search(vals.length > 0 ? '^(' + vals + ')$' : '', true, false)
+              .draw();
 
                         });
 
-                    column.data().unique().sort().each(function (d, j) {
-                        select.append('<option value="' + d + '">' + d + '</option>')
-                    });
+                                   column.data().unique().sort().each(function(d, j) {
+                                      var // wrapped
+                                        $label = $('<label>'),
+                                        $text = $('<span>', {
+                                          text: d
+                                        }),
+                                        $cb = $('<input>', {
+                                          type: 'checkbox',
+                                          value: d
+                                        });
+
+                                      $text.appendTo($label);
+                                      $cb.appendTo($label);
+
+                                      ddmenu.append($('<li>').append($label));
+                                    });
                 });
 
             }
 
-            //initComplete: function () {
-            //    this.api().columns().every(function () {
-            //        var column = this;
-            //        $('#dataTables-example .head .head_hide').html('');
-            //   //     var selecttext = "";
-
-            //        //column.data().unique().sort().each(function (d, j) {
-            //        //    selecttext += '<option value="' + d + '">' + d + '</option>';
-            //        //});
-
-            //        var select = $('<select id="formfilter" class="filterdropdown"><option value="">' + $(column.header()).text() + '</option></select>')
-            //            .appendTo($(column.header()).empty())
-            //      //      .appendTo(selecttext)
-            //            .on('change', function () {
-            //                var val = $.fn.dataTable.util.escapeRegex(
-            //                    $(this).val()
-            //                );
-            //                column
-            //                    .search(val ? '^' + val + '$' : '', true, false)
-            //                    .draw();
-            //            });
-
-            //        column.data().unique().sort().each(function (d, j) {
-            //            select.append('<option value="' + d + '">' + d + '</option>')
-            //        });
-            //    });
-
-            //}
+            
         }
         );
 

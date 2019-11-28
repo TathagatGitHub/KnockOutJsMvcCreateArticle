@@ -29,6 +29,11 @@ namespace KnockOutJsMvcCreateArticle.Controllers
         {
             return View();
         }
+
+        public ActionResult AdvanceDataTable ()
+        {
+            return View();
+        }
         public ActionResult AjaxHandler(jQueryDataTableParamModel param)
         {
            // var allBooks = db.BookDB.ToList();
@@ -261,9 +266,10 @@ namespace KnockOutJsMvcCreateArticle.Controllers
         public JsonResult DataProviderAction(string sEcho, int iDisplayStart, int iDisplayLength)
         {
             var idFilter = Convert.ToString(Request["sSearch_0"]);
-            var nameFilter = Convert.ToString(Request["sSearch_1"]);
-            var  dateFilter = Convert.ToString(Request["sSearch_2"]);
+            var nameFilter = Convert.ToString(Request["sSearch_2"]);
+        //    var  dateFilter = Convert.ToString(Request["sSearch_2"]);
             var townFilter = Convert.ToString(Request["sSearch_3"]);
+            var synopsisFilter = Convert.ToString(Request["sSearch_4"]);
 
             var fromID = 0;
             var toID = 0;
@@ -280,16 +286,21 @@ namespace KnockOutJsMvcCreateArticle.Controllers
                 city = townFilter.Substring(1, townFilter.Length-2); // == "" ? 0 : townFilter.Split('~')[0];
              //   toID = idFilter.Split('~')[1] == "" ? 0 : Convert.ToInt32(townFilter.Split('~')[1]);
             }
-            DateTime fromDate = DateTime.MinValue;
-            DateTime toDate = DateTime.MaxValue;
-            if (dateFilter.Contains('~'))
+            var synopsis = "";
+            if (synopsisFilter.Contains('^'))
             {
-                //Split date range filters with ~
-                fromDate = dateFilter.Split('~')[0] == "" ?
-                  DateTime.MinValue : Convert.ToDateTime(dateFilter.Split('~')[0]);
-                toDate = dateFilter.Split('~')[1] == "" ?
-                  DateTime.MaxValue : Convert.ToDateTime(dateFilter.Split('~')[1]);
+                synopsis= synopsisFilter.Substring(1, synopsisFilter.Length - 2); // == "" ? 0 : townFilter.Split('~')[0];
             }
+           // DateTime fromDate = DateTime.MinValue;
+            //DateTime toDate = DateTime.MaxValue;
+            //if (dateFilter.Contains('~'))
+            //{
+            //    //Split date range filters with ~
+            //    fromDate = dateFilter.Split('~')[0] == "" ?
+            //      DateTime.MinValue : Convert.ToDateTime(dateFilter.Split('~')[0]);
+            //    toDate = dateFilter.Split('~')[1] == "" ?
+            //      DateTime.MaxValue : Convert.ToDateTime(dateFilter.Split('~')[1]);
+            //}
 
             var filteredCompanies = db.BookDB
                                     .Where(c => (fromID == 0 || fromID < c.Id)
@@ -299,6 +310,8 @@ namespace KnockOutJsMvcCreateArticle.Controllers
                                                 (nameFilter == "" || c.Title.ToLower().Contains(nameFilter.ToLower()))
                                                 &&
                                                 (townFilter == "" || c.Isbn == city)
+                                                &&
+                                                (synopsisFilter == "" || c.Synopsis == synopsis)
                                                 //&&
                                                 //(fromDate == DateTime.MinValue || fromDate < c.DateCreated)
                                                 //&&

@@ -57,3 +57,10 @@ li.current{
 li.disabled{
     max-width: 120px;
 }
+
+/*.filterdropdown {
+    max-height: 80px; /* At most, around 3/4 visible items. */
+    height: 30px;
+    /*position: relative;
+    height: 19px;*/
+}*/
