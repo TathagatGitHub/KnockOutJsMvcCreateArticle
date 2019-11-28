@@ -284,12 +284,20 @@ namespace KnockOutJsMvcCreateArticle.Controllers
             {
                 //Split number range filters with ~
                 city = townFilter.Substring(1, townFilter.Length-2); // == "" ? 0 : townFilter.Split('~')[0];
+                if (city == "All")
+                {
+                    townFilter = "";
+                }
              //   toID = idFilter.Split('~')[1] == "" ? 0 : Convert.ToInt32(townFilter.Split('~')[1]);
             }
             var synopsis = "";
             if (synopsisFilter.Contains('^'))
             {
                 synopsis= synopsisFilter.Substring(1, synopsisFilter.Length - 2); // == "" ? 0 : townFilter.Split('~')[0];
+                if (synopsis == "All")
+                {
+                    synopsisFilter = "";
+                }
             }
            // DateTime fromDate = DateTime.MinValue;
             //DateTime toDate = DateTime.MaxValue;
