@@ -40,19 +40,86 @@
 
 
         editor = new $.fn.dataTable.Editor( {
-    @*ajax:  '@Url.Action("GetBookspost","Book")',*@
-    //ajax:  '/Book/GetBookspost',
-      ajax:  '/Book/DataProviderAction',
-            table: '#results-list',
-    idSrc:  'Id',
-    fields: [
-        { label: 'Id', name: 'Id' },
-        { label: 'AuthorId', name: 'AuthorId' },
-        { label: 'Title', name: 'Title' },
-        { label: 'Isbn', name: 'Isbn' },
-        { label: 'Synopsis', name: 'Synopsis' },
-        { label: 'Description', name: 'Description' },
-        { label: 'ImageUrl', name: 'ImageUrl' }
+      
+            ajax: {
+                 // USe create: if you need to, here we are only using edit. Create will be same. Commented below
+                //  create: {
+                //    type: 'POST',
+                //    url: '/Book/EditDatatableMethod',
+                //    data: function (d) {
+                //        d.Id = Object.keys(d.data)[0]
+                //         // add more if needed
+                //    },
+                //    success: function (result) {
+                //        postlogtable.ajax.reload(null, false);
+                //        if (result.success) {
+                //            swal({
+                //                title: "Success",
+                //                text: 'Row successfully added.  ',
+                //                type: 'success',
+                //            });
+                //        }
+                //        else {
+                //            swal({
+                //                title: "Error",
+                //                text: result.responseText,
+                //                type: 'error',
+                //            });
+                //        }
+                //    },
+                //    error: function (response) {
+                //        swal({
+                //            title: "Error",
+                //            text: response.responseText,
+                //            type: 'error',
+                //        });
+                //    }
+                //},
+
+                edit: {
+                    type: 'POST',
+                    url: '/Book/EditDatatableMethod',
+                    data: function (d) {
+                        d.Id = Object.keys(d.data)[0]
+                            //d.Id = getParameterByName('Id')
+                    },
+                    success: function (result) {
+                        console.log('success');
+                        if (result.success) {
+                            //postlogtable.ajax.reload(null, false);
+                        }
+                        else {
+                        }
+                    },
+                    error: function (response) {
+                        swal({
+                            title: "Error",
+                            text: response.responseText,
+                            type: 'error',
+                        });
+                    }
+                },
+
+            },
+			
+            formOptions: {
+                inline: {
+                      submit: 'allIfChanged'
+                }
+            },
+         
+            table: "#results-list",
+            idSrc:  'Id',
+
+
+            fields: [
+                { label: 'Id', name: 'Id' },
+                { label: 'AuthorId', name: 'AuthorId' },
+                { label: 'Title', name: 'Title' },
+                { label: 'Isbn', name: 'Isbn' },
+                { label: 'Synopsis', name: 'Synopsis' },
+                { label: 'Description', name: 'Description' },
+                { label: 'ImageUrl', name: 'ImageUrl' }
 
         // etc
     ]
@@ -61,7 +128,9 @@
 
          // Activate the bubble editor on click of a table cell
     $('#results-list').on( 'click', 'tbody td:not(:first-child)', function (e) {
-        editor.bubble( this );
+       editor.inline( this, {
+            buttons: { label: '&gt;', fn: function () { this.submit(); } }
+        } );
     });
 
         $('#results-list').dataTable({
@@ -112,8 +181,6 @@
                     }
                 },
 
-                //{ "mData": "AuthorId" },
-                //{ "mData": "Title" },
                 { "mData": "Isbn" },
                 { "mData": "Synopsis" },
                 { "mData": "Description" },
@@ -132,26 +199,7 @@
                 { extend: 'edit', editor: editor },
                 { extend: 'remove', editor: editor }
             ],
-        //  initComplete: function () {
-        //    this.api().columns().every( function () {
-        //        var column = this;
-        //        var select = $('<select><option value=""></option></select>')
-        //            .appendTo( $(column.header()).empty() )
-        //            .on( 'change', function () {
-        //                var val = $.fn.dataTable.util.escapeRegex(
-        //                    $(this).val()
-        //                );
-
-        //                column
-        //                    .search( val ? '^'+val+'$' : '', true, false )
-        //                    .draw();
-        //            } );
-
-        //        column.data().unique().sort().each( function ( d, j ) {
-        //            select.append( '<option value="'+d+'">'+d+'</option>' )
-        //        } );
-        //    } );
-        //}
+    
               initComplete: function () {
                 this.api().columns().every(function () {
                     var column = this;
@@ -175,36 +223,9 @@
                     });
                 });
 
-            }
+              }
 
-            //initComplete: function () {
-            //    this.api().columns().every(function () {
-            //        var column = this;
-            //        $('#dataTables-example .head .head_hide').html('');
-            //   //     var selecttext = "";
-
-            //        //column.data().unique().sort().each(function (d, j) {
-            //        //    selecttext += '<option value="' + d + '">' + d + '</option>';
-            //        //});
-
-            //        var select = $('<select id="formfilter" class="filterdropdown"><option value="">' + $(column.header()).text() + '</option></select>')
-            //            .appendTo($(column.header()).empty())
-            //      //      .appendTo(selecttext)
-            //            .on('change', function () {
-            //                var val = $.fn.dataTable.util.escapeRegex(
-            //                    $(this).val()
-            //                );
-            //                column
-            //                    .search(val ? '^' + val + '$' : '', true, false)
-            //                    .draw();
-            //            });
-
-            //        column.data().unique().sort().each(function (d, j) {
-            //            select.append('<option value="' + d + '">' + d + '</option>')
-            //        });
-            //    });
-
-            //}
+    
         }
         );
 
