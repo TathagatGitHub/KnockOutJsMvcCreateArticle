@@ -87,6 +87,7 @@
                         console.log('success');
                         if (result.success) {
                             //postlogtable.ajax.reload(null, false);
+                            $('#results-list').DataTable().ajax.reload();
                         }
                         else {
                         }

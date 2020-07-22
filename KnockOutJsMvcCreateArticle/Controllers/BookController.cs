@@ -342,38 +342,25 @@ namespace KnockOutJsMvcCreateArticle.Controllers
             string ImageUrl;
             if (Request.Form["action"] == "edit")
             {
+                Book book = db.BookDB.Find(Id);
 
-
-                isbnID = Request.Form["data["+Id.ToString()+"][Isbn]"].ToString();
+                isbnID = Request.Form["data[" + Id.ToString() + "][Isbn]"].ToString();
                 Synopsis = Request.Form["data[" + Id.ToString() + "][Synopsis]"].ToString();
-               
+                book.Synopsis = Synopsis;
+                db.SaveChanges();
+                return "Sucess";
 
 
             }
 
             else
-                ImageUrl = Request.Form["data["+Id.ToString()+ "][ImageUrl]"].ToString();
+            {
+                ImageUrl = Request.Form["data[" + Id.ToString() + "][ImageUrl]"].ToString();
+                return "Failure";
+            }
 
-            //foreach (var item in param.sColumns)
-            //{
-            //  //  var filterText = item.search.value;
-            //    //if (!String.IsNullOrEmpty(filterText))
-            //    //{
-            //        //filterText = filterText.ToLower();
-            //        switch (item.ToString())
-            //        {
-            //            case "Isbn":
 
-            //                bookID = Request.Form["data[3][Isbn]"].ToString();
-            //                break;
-            //            case "Synopsis":
 
-            //                authorId = Request.Form["data[3][Synopsis]"].ToString();
-            //                break;
-            //        }
-            //   // }
-            //}
-                            return "";
-        }
+            }
     }
 }
